@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WHY WE - Music That's Legal, Curated & Atmospheric</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', system-ui, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* ANIMATIONS */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) translateX(0px); }
+            33% { transform: translateY(-20px) translateX(10px); }
+            66% { transform: translateY(20px) translateX(-10px); }
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { 
+                box-shadow: 0 0 20px rgba(236, 72, 153, 0.4), 0 0 40px rgba(251, 146, 60, 0.2); 
+                transform: scale(1); 
+            }
+            50% { 
+                box-shadow: 0 0 40px rgba(236, 72, 153, 0.7), 0 0 60px rgba(251, 146, 60, 0.4); 
+                transform: scale(1.05); 
+            }
+        }
+
+        @keyframes slide-in-right {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .float-1 { animation: float 6s ease-in-out infinite; }
+        .float-2 { animation: float 8s ease-in-out infinite 1s; }
+        .float-3 { animation: float 7s ease-in-out infinite 2s; }
+        .float-4 { animation: float 9s ease-in-out infinite 1.5s; }
+        .float-5 { animation: float 10s ease-in-out infinite 0.5s; }
+        .float-6 { animation: float 8s ease-in-out infinite 2.5s; }
+
+        .pulse-glow-effect { animation: pulse-glow 2.5s ease-in-out infinite; }
+        .shimmer-effect { animation: shimmer 2s ease-in-out infinite; }
+
+        .step-item {
+            animation: slide-in-right 0.8s ease-out forwards;
+        }
+
+        .step-1 { animation-delay: 0s; }
+        .step-2 { animation-delay: 0.1s; }
+        .step-3 { animation-delay: 0.2s; }
+        .step-4 { animation-delay: 0.3s; }
+        .step-5 { animation-delay: 0.4s; }
+
+        /* BACKGROUND BLOBS */
+        .background {
+            position: fixed;
+            inset: 0;
+            z-index: -10;
+            overflow: hidden;
+        }
+
+        .bg-base {
+            position: absolute;
+            inset: 0;
+            background-color: #000000;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.7;
+        }
+
+        .blob-1 { top: 0; left: 0; width: 384px; height: 384px; background-color: rgba(147, 51, 234, 0.4); }
+        .blob-2 { top: 80px; right: 40px; width: 384px; height: 384px; background-color: rgba(236, 72, 153, 0.4); }
+        .blob-3 { bottom: 0; left: 25%; width: 320px; height: 320px; background-color: rgba(234, 179, 8, 0.3); }
+        .blob-4 { bottom: 80px; right: 25%; width: 384px; height: 384px; background-color: rgba(220, 38, 38, 0.3); }
+        .blob-5 { top: 33%; right: 33%; width: 288px; height: 288px; background-color: rgba(249, 115, 22, 0.25); }
+        .blob-6 { bottom: 25%; right: 0; width: 320px; height: 320px; background-color: rgba(236, 72, 153, 0.25); }
+
+        /* NAVIGATION */
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 50;
+            transition: all 0.3s ease;
+            padding: 1.5rem 0;
+        }
+
+        nav.scrolled {
+            background-color: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 0.75rem 0;
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(to right, #f472b6, #fcd34d, #fb923c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: none;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+            }
+        }
+
+        .nav-links button {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links button:hover {
+            color: #f472b6;
+        }
+
+        #mobile-menu-btn {
+            display: block;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (min-width: 768px) {
+            #mobile-menu-btn {
+                display: none;
+            }
+        }
+
+        #mobile-menu {
+            display: none;
+            background-color: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            margin-top: 1rem;
+            padding: 1.5rem;
+            gap: 1rem;
+        }
+
+        #mobile-menu.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #mobile-menu button {
+            display: block;
+            width: 100%;
+            text-align: left;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 0.5rem 0;
+            transition: color 0.3s;
+        }
+
+        #mobile-menu button:hover {
+            color: #f472b6;
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 6rem 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        /* HERO */
+        .hero {
+            padding-top: 8rem;
+            padding-bottom: 6rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.2;
+            background: linear-gradient(to right, #f472b6, #fcd34d, #fb923c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        @media (min-width: 768px) {
+            .hero h1 {
+                font-size: 4.5rem;
+            }
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #cbd5e1;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(to right, #ec4899, #facc15, #f97316);
+            color: white;
+            font-weight: bold;
+            border-radius: 9999px;
+            border: none;
+            cursor: pointer;
+            transition: box-shadow 0.3s;
+            text-decoration: none;
+        }
+
+        .cta-btn:hover {
+            box-shadow: 0 0 30px rgba(236, 72, 153, 0.5);
+        }
+
+        .cta-btn.pulse {
+            animation: pulse-glow 2.5s ease-in-out infinite;
+        }
+
+        .tally-form {
+            padding: 3rem 0;
+        }
+
+        /* SECTIONS WITH BACKGROUNDS */
+        .section-alt {
+            background: linear-gradient(to bottom, transparent, rgba(159, 18, 57, 0.1));
+        }
+
+        section h2 {
+            font-size: 2.25rem;
+            font-weight: bold;
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        section h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        /* GRIDS */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            padding: 2rem;
+            border-radius: 1.5rem;
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.4));
+            border: 1px solid rgba(71, 85, 105, 0.5);
+            backdrop-filter: blur(10px);
+            transition: border-color 0.3s;
+        }
+
+        .card:hover {
+            border-color: rgba(244, 114, 182, 0.5);
+        }
+
+        .card h3 {
+            margin-bottom: 1rem;
+        }
+
+        .card p {
+            color: #cbd5e1;
+            font-size: 1rem;
+        }
+
+        .card.pink h3 { color: #f472b6; }
+        .card.yellow h3 { color: #fcd34d; }
+        .card.orange h3 { color: #fb923c; }
+
+        /* PRICING */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .price-card {
+            padding: 2rem;
+            border-radius: 1.5rem;
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.4));
+            border: 1px solid rgba(71, 85, 105, 0.5);
+            backdrop-filter: blur(10px);
+            text-align: left;
+        }
+
+        .price-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .price-amount {
+            font-size: 2.25rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+
+        .price-card.pink .price-amount { color: #f472b6; }
+        .price-card.yellow .price-amount { color: #fcd34d; }
+        .price-card.orange .price-amount { color: #fb923c; }
+
+        .price-details {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem;
+            border-radius: 1.5rem;
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(251, 146, 60, 0.1));
+            border: 1px solid rgba(244, 114, 182, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .price-details h3 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 0;
+            color: #cbd5e1;
+        }
+
+        .price-row.total {
+            border-top: 1px solid rgba(244, 114, 182, 0.3);
+            padding-top: 1rem;
+            margin-top: 1rem;
+            font-size: 1.125rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .price-row.total span:last-child {
+            background: linear-gradient(to right, #f472b6, #fb923c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* HOW IT WORKS */
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .step {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            font-size: 2.25rem;
+            font-weight: bold;
+            background: linear-gradient(to right, #f472b6, #fcd34d, #fb923c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            min-width: 80px;
+        }
+
+        .step-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .step-content p {
+            color: #cbd5e1;
+        }
+
+        /* SOCIAL PROOF */
+        .venues-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .venue-card {
+            padding: 1.5rem;
+            border-radius: 1rem;
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.5), rgba(15, 23, 42, 0.3));
+            border: 1px solid rgba(244, 114, 182, 0.3);
+            text-align: center;
+            font-weight: 600;
+            transition: border-color 0.3s;
+        }
+
+        .venue-card:hover {
+            border-color: rgba(244, 114, 182, 0.7);
+        }
+
+        /* CTA SECTION */
+        .cta-section {
+            background: linear-gradient(to bottom, rgba(159, 18, 57, 0.2), rgba(180, 83, 9, 0.2));
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            margin-bottom: 2rem;
+        }
+
+        .cta-section p {
+            font-size: 1.125rem;
+            color: #cbd5e1;
+            margin-bottom: 2rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 3rem;
+            justify-content: center;
+        }
+
+        @media (min-width: 640px) {
+            .contact-info {
+                flex-direction: row;
+            }
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-link:hover {
+            color: #f472b6;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 2rem 1.5rem;
+            border-top: 1px solid rgba(244, 114, 182, 0.2);
+            text-align: center;
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.25rem;
+            }
+
+            section h2 {
+                font-size: 1.875rem;
+            }
+
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .step {
+                gap: 1rem;
+            }
+
+            .step-number {
+                font-size: 2rem;
+                min-width: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- BACKGROUND -->
+    <div class="background">
+        <div class="bg-base"></div>
+        <div class="blob blob-1 float-1"></div>
+        <div class="blob blob-2 float-2"></div>
+        <div class="blob blob-3 float-3"></div>
+        <div class="blob blob-4 float-4"></div>
+        <div class="blob blob-5 float-5"></div>
+        <div class="blob blob-6 float-6"></div>
+    </div>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">WHY WE</div>
+            
+            <div class="nav-links">
+                <button class="nav-link" data-section="who-we-are">Who We Are</button>
+                <button class="nav-link" data-section="why-music-matters">Why Music Matters</button>
+                <button class="nav-link" data-section="solutions">Solution</button>
+                <button class="nav-link" data-section="pricing">Pricing</button>
+                <button class="nav-link" data-section="how-it-works">How It Works</button>
+                <button class="nav-link" data-section="social-proof">Clients</button>
+                <button class="nav-link" data-section="cta">Contact</button>
+            </div>
+            
+            <button id="mobile-menu-btn">☰</button>
+        </div>
+        
+        <div id="mobile-menu">
+            <button class="nav-link" data-section="who-we-are">Who We Are</button>
+            <button class="nav-link" data-section="why-music-matters">Why Music Matters</button>
+            <button class="nav-link" data-section="solutions">Solution</button>
+            <button class="nav-link" data-section="pricing">Pricing</button>
+            <button class="nav-link" data-section="how-it-works">How It Works</button>
+            <button class="nav-link" data-section="social-proof">Clients</button>
+            <button class="nav-link" data-section="cta">Contact</button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Music That's Legal,<br>Curated & Atmospheric</h1>
+            <p>+23% average check increase. Professional music for HoReCa venues.</p>
+            <button class="cta-btn pulse" data-section="cta">Get Your Free Audit</button>
+            
+            <div class="tally-form">
+                <iframe data-tally-src="https://tally.so/embed/XxN7Nd?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="744" frameborder="0" marginheight="0" marginwidth="0" title="Get Free Music Strategy Guide"></iframe>
+                <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHO WE ARE -->
+    <section id="who-we-are" class="section-alt">
+        <div class="container">
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <h2>Who We Are</h2>
+                <p style="font-size: 1.125rem; color: #cbd5e1;">Professional musicians, DJs, and music selectors with 10+ years in hospitality. We understand venues, guests, and what music actually does.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY MUSIC MATTERS -->
+    <section id="why-music-matters">
+        <div class="container">
+            <h2>Why Music Matters</h2>
+            <div class="grid-3">
+                <div class="card pink">
+                    <h3>Business Case</h3>
+                    <p>Cornell University: right music = +23% average check. Guests spend more, stay longer, come back.</p>
+                </div>
+                <div class="card yellow">
+                    <h3>Guest Experience</h3>
+                    <p>Great music creates the right mood. People feel it. When it's right, they feel at home.</p>
+                </div>
+                <div class="card orange">
+                    <h3>Staff Factor</h3>
+                    <p>Good music = better vibe = better staff. Your team moves faster, smiles more, earns more tips.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOLUTIONS -->
+    <section id="solutions" class="section-alt">
+        <div class="container">
+            <h2>The Solution</h2>
+            <div class="grid-3">
+                <div class="card pink">
+                    <h3>Curated</h3>
+                    <p>Professional music selection. Every track reflects your venue's identity. Zero repetition. Maximum impact.</p>
+                </div>
+                <div class="card yellow">
+                    <h3>Atmospheric</h3>
+                    <p>Different music for different hours. Morning, lunch, dinner — each with its own vibe. Guests stay longer. Check increases.</p>
+                </div>
+                <div class="card orange">
+                    <h3>Legal</h3>
+                    <p>Full EMRA compliance. No fines. No risk. Your business is protected. Complete peace of mind.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing">
+        <div class="container">
+            <h2>Choose Your Level</h2>
+            <p style="text-align: center; color: #94a3b8; margin-bottom: 4rem;">One-time setup + ongoing monthly costs</p>
+            
+            <div class="pricing-grid">
+                <div class="price-card pink">
+                    <h3>Basic</h3>
+                    <div class="price-amount">$500</div>
+                    <p>One playlist. Repeats daily.</p>
+                </div>
+                <div class="price-card yellow">
+                    <h3>Medium</h3>
+                    <div class="price-amount">$750</div>
+                    <p>Three playlists. Three days of music.</p>
+                </div>
+                <div class="price-card orange">
+                    <h3>Premium</h3>
+                    <div class="price-amount">$1,000</div>
+                    <p>Seven playlists. Seven days. Zero repeats.</p>
+                </div>
+            </div>
+
+            <div class="price-details">
+                <h3>Monthly Costs</h3>
+                <div class="price-row">
+                    <span>Streaming + Licensing</span>
+                    <span style="color: #f472b6; font-weight: 600;">$44/mo</span>
+                </div>
+                <div class="price-row">
+                    <span>Optional: Manual Updates</span>
+                    <span style="color: #fcd34d; font-weight: 600;">$100/mo</span>
+                </div>
+                <div class="price-row total">
+                    <span>Total Monthly</span>
+                    <span>$44/mo</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how-it-works" class="section-alt">
+        <div class="container">
+            <div style="max-width: 900px; margin: 0 auto;">
+                <h2>How It Works</h2>
+                <div class="steps" id="steps-container"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOCIAL PROOF -->
+    <section id="social-proof">
+        <div class="container">
+            <h2>Already Working With Us</h2>
+            <div class="venues-grid" id="venues-container"></div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="cta" class="cta-section">
+        <div class="container">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <h2>Ready to Increase Your Check Average?</h2>
+                <p>We'll conduct a free audit of your venue.<br>No cost. No commitment.</p>
+                <a href="https://t.me/wermur" target="_blank" class="cta-btn pulse">Schedule Your Free Audit</a>
+                <div class="contact-info">
+                    <a href="mailto:whywemusic@yahoo.com" class="contact-link">
+                        📧 whywemusic@yahoo.com
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2025 WHY WE. Music That's Legal, Curated & Atmospheric.</p>
+    </footer>
+
+    <script>
+        const steps = [
+            { num: '01', title: 'Assessment', desc: 'We audit your place — hours, peak days, demographics.' },
+            { num: '02', title: 'Strategy', desc: 'We build a music strategy aligned with your brand.' },
+            { num: '03', title: 'Track Selection', desc: 'We curate tracks that keep guests engaged.' },
+            { num: '04', title: 'Integration', desc: 'We integrate into your infrastructure.' },
+            { num: '05', title: 'Ongoing Support', desc: '24/7 support. Regular updates. Feedback-based adjustments.' }
+        ];
+
+        const venues = ['Hookah Place Marina', 'Hookah Place DIFC', 'Hookah Place Downtown', 'Hookah Place ADY'];
+
+        // Render steps
+        const stepsContainer = document.getElementById('steps-container');
+        steps.forEach((step, idx) => {
+            const stepEl = document.createElement('div');
+            stepEl.className = `step step-item step-${idx + 1}`;
+            stepEl.innerHTML = `
+                <div class="step-number shimmer-effect">${step.num}</div>
+                <div class="step-content">
+                    <h3>${step.title}</h3>
+                    <p>${step.desc}</p>
+                </div>
+            `;
+            stepsContainer.appendChild(stepEl);
+        });
+
+        // Render venues
+        const venuesContainer = document.getElementById('venues-container');
+        venues.forEach((venue) => {
+            const venueEl = document.createElement('div');
+            venueEl.className = 'venue-card';
+            venueEl.textContent = venue;
+            venuesContainer.appendChild(venueEl);
+        });
+
+        // Navigation
+        const navbar = document.getElementById('navbar') || document.querySelector('nav');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            mobileMenuBtn.textContent = mobileMenu.classList.contains('active') ? '✕' : '☰';
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const sectionId = link.getAttribute('data-section');
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    mobileMenu.classList.remove('active');
+                    mobileMenuBtn.textContent = '☰';
+                }
+            });
+        });
+
+        // CTA buttons
+        const ctaButtons = document.querySelectorAll('.cta-btn');
+        ctaButtons.forEach(btn => {
+            if (!btn.href) {
+                btn.addEventListener('click', () => {
+                    const ctaSection = document.getElementById('cta');
+                    if (ctaSection) {
+                        ctaSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
