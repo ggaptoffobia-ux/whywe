@@ -51,12 +51,13 @@
             50% { opacity: 0.5; }
         }
 
-        .float-1 { animation: float 6s ease-in-out infinite; }
-        .float-2 { animation: float 8s ease-in-out infinite 1s; }
-        .float-3 { animation: float 7s ease-in-out infinite 2s; }
-        .float-4 { animation: float 9s ease-in-out infinite 1.5s; }
-        .float-5 { animation: float 10s ease-in-out infinite 0.5s; }
-        .float-6 { animation: float 8s ease-in-out infinite 2.5s; }
+        /* Анимации отключены для оптимизации производительности */
+        .float-1 { }
+        .float-2 { }
+        .float-3 { }
+        .float-4 { }
+        .float-5 { }
+        .float-6 { }
 
         .pulse-glow-effect { animation: pulse-glow 2.5s ease-in-out infinite; }
         .shimmer-effect { animation: shimmer 2s ease-in-out infinite; }
@@ -689,7 +690,7 @@
             <div style="max-width: 800px; margin: 0 auto; text-align: center;">
                 <p style="font-size: 1.125rem; color: #cbd5e1; margin-bottom: 2rem;">DJs, musicians, and music strategists with 10+ years in hospitality across Dubai and the Middle East.</p>
                 
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 2rem; margin-top: 3rem;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 2rem; margin-top: 3rem; margin-bottom: 3rem;">
                     <div>
                         <div style="font-size: 2.5rem; font-weight: bold; background: linear-gradient(to right, #f472b6, #fb923c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">4+</div>
                         <div style="color: #cbd5e1;">Venue Groups</div>
@@ -704,7 +705,19 @@
                     </div>
                 </div>
 
-                <p style="font-size: 1rem; color: #cbd5e1; margin-top: 3rem; line-height: 1.8;">We understand the business: how music affects guest spending patterns, how atmosphere drives loyalty, and how the right soundtrack creates an experience worth paying for. We're not just curators. We're your music strategists.</p>
+                <div style="padding: 2rem; background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(251, 146, 60, 0.1)); border: 1px solid rgba(244, 114, 182, 0.3); border-radius: 1.5rem; margin-top: 2rem;">
+                    <h3 style="margin-bottom: 1.5rem; font-size: 1.25rem;">Our Track Record</h3>
+                    <ul style="text-align: left; color: #cbd5e1; line-height: 2; max-width: 600px; margin: 0 auto;">
+                        <li>✅ <strong>1000+</strong> DJ sets performed across clubs, lounges, festivals, and private events</li>
+                        <li>✅ <strong>500+</strong> original and curated tracks produced and arranged</li>
+                        <li>✅ <strong>50+</strong> festival appearances (regional and international)</li>
+                        <li>✅ <strong>20+</strong> film and commercial projects with original sound design</li>
+                        <li>✅ <strong>100+</strong> brands and commercial projects with music strategy</li>
+                    </ul>
+                    <p style="color: #cbd5e1; margin-top: 1.5rem; font-style: italic;">This isn't theory. We've lived music. We know how it works.</p>
+                </div>
+
+                <p style="font-size: 1rem; color: #cbd5e1; margin-top: 2rem; line-height: 1.8;">We understand the business: how music affects guest spending patterns, how atmosphere drives loyalty, and how the right soundtrack creates an experience worth paying for. We're not just curators. We're your music strategists.</p>
             </div>
         </div>
     </section>
