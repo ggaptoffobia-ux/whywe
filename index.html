@@ -323,6 +323,66 @@
         .card.yellow h3 { color: #fcd34d; }
         .card.orange h3 { color: #fb923c; }
 
+        /* CASE STUDIES */
+        .case-study {
+            margin-bottom: 3rem;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.4));
+            border: 1px solid rgba(71, 85, 105, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .case-study-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .case-study-content {
+            padding: 2rem;
+        }
+
+        .case-study h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #f472b6, #fb923c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .case-study p {
+            color: #cbd5e1;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .case-study-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .case-study-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(244, 114, 182, 0.1);
+            border: 1px solid rgba(244, 114, 182, 0.3);
+            border-radius: 9999px;
+            color: #f472b6;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .case-study-link:hover {
+            background: rgba(244, 114, 182, 0.2);
+            border-color: rgba(244, 114, 182, 0.6);
+        }
+
         /* PRICING */
         .pricing-grid {
             display: grid;
@@ -425,67 +485,6 @@
             color: #cbd5e1;
         }
 
-        /* FORM STYLES */
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #cbd5e1;
-            font-size: 0.95rem;
-            font-weight: 500;
-        }
-
-        .form-input,
-        .form-select,
-        .form-textarea {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            border-radius: 0.75rem;
-            border: 1px solid rgba(244, 114, 182, 0.3);
-            background: rgba(30, 41, 59, 0.6);
-            color: #ffffff;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        .form-input:focus,
-        .form-select:focus,
-        .form-textarea:focus {
-            outline: none;
-            border-color: rgba(244, 114, 182, 0.8);
-            box-shadow: 0 0 0 3px rgba(244, 114, 182, 0.1);
-        }
-
-        .form-textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .form-buttons {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .form-submit {
-            flex: 1;
-            padding: 1rem;
-            background: linear-gradient(to right, #ec4899, #facc15, #f97316);
-            color: white;
-            font-weight: bold;
-            border: none;
-            border-radius: 0.75rem;
-            cursor: pointer;
-            transition: box-shadow 0.3s;
-        }
-
-        .form-submit:hover {
-            box-shadow: 0 0 20px rgba(236, 72, 153, 0.4);
-        }
-
         /* SOCIAL PROOF */
         .venues-grid {
             display: grid;
@@ -505,6 +504,29 @@
 
         .venue-card:hover {
             border-color: rgba(244, 114, 182, 0.7);
+        }
+
+        /* TESTIMONIAL */
+        .testimonial {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 2rem;
+            border-radius: 1.5rem;
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.4));
+            border: 1px solid rgba(244, 114, 182, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .testimonial p {
+            font-size: 1.125rem;
+            color: #cbd5e1;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-author {
+            color: #f472b6;
+            font-weight: 600;
         }
 
         /* CTA SECTION */
@@ -547,6 +569,23 @@
         }
 
         .contact-link:hover {
+            color: #f472b6;
+        }
+
+        .working-hours {
+            padding: 2rem;
+            background: rgba(244, 114, 182, 0.1);
+            border-radius: 1rem;
+            border: 1px solid rgba(244, 114, 182, 0.3);
+            margin-bottom: 2rem;
+        }
+
+        .working-hours p {
+            color: #cbd5e1;
+            margin: 0.5rem 0;
+        }
+
+        .working-hours strong {
             color: #f472b6;
         }
 
@@ -611,8 +650,7 @@
                 <button class="nav-link" data-section="solutions">Solution</button>
                 <button class="nav-link" data-section="pricing">Pricing</button>
                 <button class="nav-link" data-section="how-it-works">How It Works</button>
-                <button class="nav-link" data-section="faq">FAQ</button>
-                <button class="nav-link" data-section="social-proof">Clients</button>
+                <button class="nav-link" data-section="case-studies">Case Studies</button>
                 <button class="nav-link" data-section="cta">Contact</button>
             </div>
             
@@ -625,8 +663,7 @@
             <button class="nav-link" data-section="solutions">Solution</button>
             <button class="nav-link" data-section="pricing">Pricing</button>
             <button class="nav-link" data-section="how-it-works">How It Works</button>
-            <button class="nav-link" data-section="faq">FAQ</button>
-            <button class="nav-link" data-section="social-proof">Clients</button>
+            <button class="nav-link" data-section="case-studies">Case Studies</button>
             <button class="nav-link" data-section="cta">Contact</button>
         </div>
     </nav>
@@ -640,6 +677,7 @@
             <div style="padding: 2rem 0; max-width: 800px; margin: 0 auto; width: 100%;">
                 <iframe width="100%" height="450" src="https://www.youtube.com/embed/JyCzohs8U4E" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius: 1rem; box-shadow: 0 0 30px rgba(236, 72, 153, 0.3);"></iframe>
             </div>
+            <a href="https://drive.google.com/file/d/1hCCaCo-3vfy8zmidIkG26KhOtmz3g_Oi/view?usp=sharing" target="_blank" class="cta-btn">📄 Download Free PDF</a>
             <button class="cta-btn pulse" data-section="lead-capture">Get Your Free Audit</button>
         </div>
     </section>
@@ -647,9 +685,26 @@
     <!-- WHO WE ARE -->
     <section id="who-we-are" class="section-alt">
         <div class="container">
+            <h2>Who We Are</h2>
             <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-                <h2>Who We Are</h2>
-                <p style="font-size: 1.125rem; color: #cbd5e1;">Professional musicians, DJs, and music selectors with 10+ years in hospitality. We understand venues, guests, and what music actually does.</p>
+                <p style="font-size: 1.125rem; color: #cbd5e1; margin-bottom: 2rem;">DJs, musicians, and music strategists with 10+ years in hospitality across Dubai and the Middle East.</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 2rem; margin-top: 3rem;">
+                    <div>
+                        <div style="font-size: 2.5rem; font-weight: bold; background: linear-gradient(to right, #f472b6, #fb923c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">4+</div>
+                        <div style="color: #cbd5e1;">Venue Groups</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 2.5rem; font-weight: bold; background: linear-gradient(to right, #f472b6, #fb923c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">10+</div>
+                        <div style="color: #cbd5e1;">Years Experience</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 2.5rem; font-weight: bold; background: linear-gradient(to right, #f472b6, #fb923c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">24/7</div>
+                        <div style="color: #cbd5e1;">Support</div>
+                    </div>
+                </div>
+
+                <p style="font-size: 1rem; color: #cbd5e1; margin-top: 3rem; line-height: 1.8;">We understand the business: how music affects guest spending patterns, how atmosphere drives loyalty, and how the right soundtrack creates an experience worth paying for. We're not just curators. We're your music strategists.</p>
             </div>
         </div>
     </section>
@@ -748,71 +803,117 @@
         </div>
     </section>
 
-    <!-- FAQ -->
-    <section id="faq" class="section-alt">
+    <!-- THE PHASES -->
+    <section id="the-phases">
         <div class="container">
             <div style="max-width: 900px; margin: 0 auto;">
-                <h2>Frequently Asked Questions</h2>
+                <h2>How We Identify & Elevate Your Phases</h2>
+                <p style="text-align: center; color: #cbd5e1; font-size: 1.125rem; margin-bottom: 3rem;">During our audit, we identify the distinct phases of your venue's operation. Each phase has its own energy, audience, and purpose. We curate music that honors those phases — and creates seamless transitions between them.</p>
                 
-                <div style="border-radius: 1.5rem; background: linear-gradient(135deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.4)); border: 1px solid rgba(71, 85, 105, 0.5); overflow: hidden; backdrop-filter: blur(10px);">
-                    <div class="faq-header" onclick="toggleFAQ(this)" style="padding: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 1.25rem; background: linear-gradient(to right, rgba(244, 114, 182, 0.1), rgba(251, 146, 60, 0.1)); transition: all 0.3s ease;">
-                        <span>Questions & Answers</span>
-                        <span class="faq-toggle-icon" style="font-size: 1.5rem; transition: transform 0.3s ease; color: #f472b6;">▼</span>
+                <div class="grid-3">
+                    <div class="card pink">
+                        <h3>Morning Phase</h3>
+                        <p>Fresh energy. Coffee vibes. Subtle, sophisticated. Music that wakes without overwhelming. Sets the tone for the day.</p>
                     </div>
-                    
-                    <div class="faq-content" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
-                        <div style="padding: 2rem; border-top: 1px solid rgba(244, 114, 182, 0.2); display: flex; flex-direction: column; gap: 1.5rem;">
-                            <div style="padding-bottom: 1.5rem; border-bottom: 1px solid rgba(244, 114, 182, 0.15);">
-                                <div style="font-weight: 600; background: linear-gradient(to right, #f472b6, #fb923c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.75rem; font-size: 1.05rem;">How does WHY WE work?</div>
-                                <div style="color: #cbd5e1; line-height: 1.7; font-size: 0.95rem;">We audit your venue, create a music strategy, integrate it into your system, and provide ongoing support.</div>
-                            </div>
-                            
-                            <div style="padding-bottom: 1.5rem; border-bottom: 1px solid rgba(244, 114, 182, 0.15);">
-                                <div style="font-weight: 600; background: linear-gradient(to right, #f472b6, #fb923c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.75rem; font-size: 1.05rem;">What's the pricing?</div>
-                                <div style="color: #cbd5e1; line-height: 1.7; font-size: 0.95rem;">$500-$1,000 for setup + $44/month for streaming service subscription.</div>
-                            </div>
-                            
-                            <div style="padding-bottom: 1.5rem; border-bottom: 1px solid rgba(244, 114, 182, 0.15);">
-                                <div style="font-weight: 600; background: linear-gradient(to right, #f472b6, #fb923c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.75rem; font-size: 1.05rem;">What music do you use?</div>
-                                <div style="color: #cbd5e1; line-height: 1.7; font-size: 0.95rem;">Licensed, professionally curated music that matches your venue's style and identity.</div>
-                            </div>
-                            
-                            <div style="padding-bottom: 1.5rem; border-bottom: 1px solid rgba(244, 114, 182, 0.15);">
-                                <div style="font-weight: 600; background: linear-gradient(to right, #f472b6, #fb923c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.75rem; font-size: 1.05rem;">Do you guarantee EMRA compliance?</div>
-                                <div style="color: #cbd5e1; line-height: 1.7; font-size: 0.95rem;">Yes, 100% EMRA compliant. Zero fines. Note: EMRA licensing fees are paid separately.</div>
-                            </div>
-                            
-                            <div style="padding-bottom: 1.5rem; border-bottom: 1px solid rgba(244, 114, 182, 0.15);">
-                                <div style="font-weight: 600; background: linear-gradient(to right, #f472b6, #fb923c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.75rem; font-size: 1.05rem;">How long does implementation take?</div>
-                                <div style="color: #cbd5e1; line-height: 1.7; font-size: 0.95rem;">24 hours to 1 week, depending on your system setup.</div>
-                            </div>
-                            
-                            <div style="padding-bottom: 1.5rem; border-bottom: 1px solid rgba(244, 114, 182, 0.15);">
-                                <div style="font-weight: 600; background: linear-gradient(to right, #f472b6, #fb923c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.75rem; font-size: 1.05rem;">Can we try before paying?</div>
-                                <div style="color: #cbd5e1; line-height: 1.7; font-size: 0.95rem;">Yes. Start with a free trial playlist after your audit. Zero risk.</div>
-                            </div>
-                            
-                            <div style="padding-bottom: 1.5rem; border-bottom: 1px solid rgba(244, 114, 182, 0.15);">
-                                <div style="font-weight: 600; background: linear-gradient(to right, #f472b6, #fb923c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.75rem; font-size: 1.05rem;">What if we don't like the music?</div>
-                                <div style="color: #cbd5e1; line-height: 1.7; font-size: 0.95rem;">We work with you until it's perfect. Full support and adjustments included.</div>
-                            </div>
-                            
-                            <div style="padding-bottom: 0;">
-                                <div style="font-weight: 600; background: linear-gradient(to right, #f472b6, #fb923c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.75rem; font-size: 1.05rem;">What venues use WHY WE?</div>
-                                <div style="color: #cbd5e1; line-height: 1.7; font-size: 0.95rem;">Restaurants, bars, lounges, hookah lounges, and cafes across the UAE.</div>
-                            </div>
-                        </div>
+                    <div class="card yellow">
+                        <h3>Lunch Phase</h3>
+                        <p>Social energy. People talking, connecting. Uplifting tracks that encourage lingering. Conversation + music in perfect balance.</p>
                     </div>
+                    <div class="card orange">
+                        <h3>Dinner Phase</h3>
+                        <p>Sophistication. Elegance. Music that elevates the experience without dominating. Guests feel the craftsmanship.</p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 3rem; padding: 2rem; background: rgba(30, 41, 59, 0.5); border-radius: 1.5rem; border: 1px solid rgba(71, 85, 105, 0.5);">
+                    <h3 style="text-align: center; margin-bottom: 1rem;">The Audit Process</h3>
+                    <p style="color: #cbd5e1; line-height: 1.8; margin-bottom: 1rem;">
+                        <strong>We come to your venue and observe:</strong>
+                    </p>
+                    <ul style="color: #cbd5e1; margin-left: 1.5rem; line-height: 1.9;">
+                        <li>What time do different crowds arrive?</li>
+                        <li>What's the energy at 10am vs 6pm vs 10pm?</li>
+                        <li>How do guests interact during different hours?</li>
+                        <li>What's your peak revenue time?</li>
+                        <li>What music is currently playing? How do guests react?</li>
+                        <li>What's the acoustic environment? (size, ceilings, materials)</li>
+                    </ul>
+                    <p style="color: #cbd5e1; margin-top: 1.5rem; line-height: 1.8;">
+                        From this, we map your unique phases. Then we build playlists that honor each phase, with smooth transitions that elevate the entire experience.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SOCIAL PROOF -->
-    <section id="social-proof">
+    <!-- CASE STUDIES -->
+    <section id="case-studies">
         <div class="container">
             <h2>Already Working With Us</h2>
-            <div class="venues-grid" id="venues-container"></div>
+            <div style="max-width: 900px; margin: 0 auto;">
+                <!-- Case Study 1 -->
+                <div class="case-study">
+                    <img src="/mnt/user-data/uploads/marina.jpeg" alt="Hookah Place Marina" class="case-study-image">
+                    <div class="case-study-content">
+                        <h3>Hookah Place Marina</h3>
+                        <p>Premium lounge in Marina with sophisticated clientele. Implemented dynamic playlists that shifted through morning elegance, lunch energy, and evening sophistication.</p>
+                        <div class="case-study-links">
+                            <a href="https://www.instagram.com/hookahplace_marina?igsh=OWc1anV6Z3FoeHZq" target="_blank" class="case-study-link">📱 Instagram</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Case Study 2 -->
+                <div class="case-study">
+                    <img src="/mnt/user-data/uploads/difc.jpeg" alt="Hookah Place DIFC" class="case-study-image">
+                    <div class="case-study-content">
+                        <h3>Hookah Place DIFC</h3>
+                        <p>Business district venue catering to finance professionals. Curated a premium atmosphere that elevated the venue's positioning and increased average spend.</p>
+                        <div class="case-study-links">
+                            <a href="https://www.instagram.com/hookahplace_dubai?igsh=MW01c2J1NDEyOWk3Mw==" target="_blank" class="case-study-link">📱 Instagram</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Case Study 3 -->
+                <div class="case-study">
+                    <img src="/mnt/user-data/uploads/downtown.jpg" alt="Hookah Place Downtown" class="case-study-image">
+                    <div class="case-study-content">
+                        <h3>Hookah Place Downtown</h3>
+                        <p>High-traffic venue requiring flexible music strategy. Implemented time-based playlists that kept guests engaged throughout the day, from casual daytime crowds to evening social scenes.</p>
+                        <div class="case-study-links">
+                            <a href="https://www.instagram.com/hookahplace_downtown?igsh=ZzkyenZ4YnMwYmNv" target="_blank" class="case-study-link">📱 Instagram</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Case Study 4 -->
+                <div class="case-study">
+                    <img src="/mnt/user-data/uploads/abu.jpg" alt="Hookah Place Abu Dhabi" class="case-study-image">
+                    <div class="case-study-content">
+                        <h3>Hookah Place Abu Dhabi</h3>
+                        <p>Expansion venue requiring cultural alignment. Developed music strategy that balanced local preferences with international appeal, creating a unique sonic identity.</p>
+                        <div class="case-study-links">
+                            <a href="https://www.instagram.com/hookahplace_abudhabi?igsh=azlha3l5c3Z6dXBu" target="_blank" class="case-study-link">📱 Instagram</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TESTIMONIAL -->
+            <div style="margin-top: 4rem;">
+                <h2 style="margin-bottom: 2rem;">What Our Clients Say</h2>
+                <div class="testimonial">
+                    <div style="display: flex; gap: 2rem; align-items: center; margin-bottom: 2rem;">
+                        <img src="/mnt/user-data/uploads/2026-06-24_20_05_31.jpg" alt="Renat" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(244, 114, 182, 0.5);">
+                        <div>
+                            <p class="testimonial-author" style="margin: 0; font-size: 1.125rem;">Renat</p>
+                            <p style="margin: 0.25rem 0 0 0; color: #94a3b8; font-size: 0.95rem;">Lounge Manager, Hookah Place Marina</p>
+                        </div>
+                    </div>
+                    <p>"Thank you WhyWe for implementing all our music ideas quickly. The curated playlist is perfect, and the way you organized it by time of day is exactly what we needed. Highly satisfied."</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -824,19 +925,19 @@
                 <p style="text-align: center; color: #cbd5e1; margin-bottom: 3rem; font-size: 1.125rem;">Tell us about your venue and we'll create a personalized music strategy. No cost. No strings attached.</p>
                 
                 <form id="lead-form" style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.4)); padding: 2.5rem; border-radius: 1.5rem; border: 1px solid rgba(71, 85, 105, 0.5); backdrop-filter: blur(10px);">
-                    <div class="form-group">
-                        <label class="form-label" for="email">Email *</label>
-                        <input type="email" id="email" name="email" class="form-input" placeholder="your@email.com" required>
+                    <div style="margin-bottom: 1.5rem;">
+                        <label style="display: block; margin-bottom: 0.5rem; color: #cbd5e1; font-size: 0.95rem; font-weight: 500;">Email *</label>
+                        <input type="email" name="email" style="width: 100%; padding: 0.75rem 1rem; border-radius: 0.75rem; border: 1px solid rgba(244, 114, 182, 0.3); background: rgba(30, 41, 59, 0.6); color: #ffffff; font-size: 1rem;" placeholder="your@email.com" required>
                     </div>
 
-                    <div class="form-group">
-                        <label class="form-label" for="name">First Name *</label>
-                        <input type="text" id="name" name="name" class="form-input" placeholder="Your Name" required>
+                    <div style="margin-bottom: 1.5rem;">
+                        <label style="display: block; margin-bottom: 0.5rem; color: #cbd5e1; font-size: 0.95rem; font-weight: 500;">First Name *</label>
+                        <input type="text" name="name" style="width: 100%; padding: 0.75rem 1rem; border-radius: 0.75rem; border: 1px solid rgba(244, 114, 182, 0.3); background: rgba(30, 41, 59, 0.6); color: #ffffff; font-size: 1rem;" placeholder="Your Name" required>
                     </div>
 
-                    <div class="form-group">
-                        <label class="form-label" for="venue-type">Venue Type *</label>
-                        <select id="venue-type" name="venue_type" class="form-select" required>
+                    <div style="margin-bottom: 1.5rem;">
+                        <label style="display: block; margin-bottom: 0.5rem; color: #cbd5e1; font-size: 0.95rem; font-weight: 500;">Venue Type *</label>
+                        <select name="venue_type" style="width: 100%; padding: 0.75rem 1rem; border-radius: 0.75rem; border: 1px solid rgba(244, 114, 182, 0.3); background: rgba(30, 41, 59, 0.6); color: #ffffff; font-size: 1rem;" required>
                             <option value="">Select venue type...</option>
                             <option value="Restaurant">Restaurant</option>
                             <option value="Bar / Lounge">Bar / Lounge</option>
@@ -846,14 +947,12 @@
                         </select>
                     </div>
 
-                    <div class="form-group">
-                        <label class="form-label" for="message">Any questions? (optional)</label>
-                        <textarea id="message" name="message" class="form-textarea" placeholder="Tell us anything else..."></textarea>
+                    <div style="margin-bottom: 1.5rem;">
+                        <label style="display: block; margin-bottom: 0.5rem; color: #cbd5e1; font-size: 0.95rem; font-weight: 500;">Any questions? (optional)</label>
+                        <textarea name="message" style="width: 100%; padding: 0.75rem 1rem; border-radius: 0.75rem; border: 1px solid rgba(244, 114, 182, 0.3); background: rgba(30, 41, 59, 0.6); color: #ffffff; font-size: 1rem; resize: vertical; min-height: 120px;" placeholder="Tell us anything else..."></textarea>
                     </div>
 
-                    <div class="form-buttons">
-                        <button type="submit" class="form-submit">Submit</button>
-                    </div>
+                    <button type="submit" style="width: 100%; padding: 1rem; background: linear-gradient(to right, #ec4899, #facc15, #f97316); color: white; font-weight: bold; border: none; border-radius: 0.75rem; cursor: pointer; transition: box-shadow 0.3s;">Submit</button>
                 </form>
             </div>
         </div>
@@ -865,7 +964,13 @@
             <div style="max-width: 800px; margin: 0 auto;">
                 <h2>Ready to Increase Your Check Average?</h2>
                 <p>We'll conduct a free audit of your venue.<br>No cost. No commitment.</p>
-                <a href="https://t.me/wermur" target="_blank" class="cta-btn pulse">Schedule Your Free Audit</a>
+
+                <div class="working-hours">
+                    <p><strong>Available:</strong> Monday - Sunday, 10:00 - 22:00 Dubai Time</p>
+                    <p><strong>Quick Response in Telegram</strong></p>
+                </div>
+
+                <a href="https://t.me/wermur" target="_blank" class="cta-btn pulse">📱 Message on Telegram</a>
                 <div class="contact-info">
                     <a href="mailto:whywemusic@yahoo.com" class="contact-link">
                         📧 whywemusic@yahoo.com
@@ -882,14 +987,12 @@
 
     <script>
         const steps = [
-            { num: '01', title: 'Assessment', desc: 'We audit your place — hours, peak days, demographics.' },
-            { num: '02', title: 'Strategy', desc: 'We build a music strategy aligned with your brand.' },
-            { num: '03', title: 'Track Selection', desc: 'We curate tracks that keep guests engaged.' },
-            { num: '04', title: 'Integration', desc: 'We integrate into your infrastructure.' },
+            { num: '01', title: 'Assessment', desc: 'We audit your place — hours, peak days, demographics, current setup.' },
+            { num: '02', title: 'Strategy', desc: 'We build a music strategy aligned with your brand and business goals.' },
+            { num: '03', title: 'Track Selection', desc: 'We curate tracks that keep guests engaged and increase spending.' },
+            { num: '04', title: 'Integration', desc: 'We integrate into your infrastructure — seamless connection to your audio system.' },
             { num: '05', title: 'Ongoing Support', desc: '24/7 support. Regular updates. Feedback-based adjustments.' }
         ];
-
-        const venues = ['Hookah Place Marina', 'Hookah Place DIFC', 'Hookah Place Downtown', 'Hookah Place ADY'];
 
         // Render steps
         const stepsContainer = document.getElementById('steps-container');
@@ -904,15 +1007,6 @@
                 </div>
             `;
             stepsContainer.appendChild(stepEl);
-        });
-
-        // Render venues
-        const venuesContainer = document.getElementById('venues-container');
-        venues.forEach((venue) => {
-            const venueEl = document.createElement('div');
-            venueEl.className = 'venue-card';
-            venueEl.textContent = venue;
-            venuesContainer.appendChild(venueEl);
         });
 
         // Navigation
@@ -960,27 +1054,12 @@
             }
         });
 
-        // FAQ toggle
-        function toggleFAQ(header) {
-            const content = header.nextElementSibling;
-            const icon = header.querySelector('.faq-toggle-icon');
-            
-            if (content.style.maxHeight === '0px' || !content.style.maxHeight) {
-                content.style.maxHeight = '1500px';
-                icon.style.transform = 'rotate(180deg)';
-            } else {
-                content.style.maxHeight = '0px';
-                icon.style.transform = 'rotate(0deg)';
-            }
-        }
-
         // Form submission to Google Sheets via Apps Script
-        let isSubmitting = false; // Флаг для блокировки повторной отправки
+        let isSubmitting = false;
         
         document.getElementById('lead-form').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Если уже отправляется - не отправляй еще раз
             if (isSubmitting) return;
             isSubmitting = true;
             
@@ -992,26 +1071,22 @@
                 message: formData.get('message')
             };
             
-            // Send to Google Sheets via Apps Script
             fetch('https://script.google.com/macros/s/AKfycbwWz_Qi92ILlKYlHeMpE-XjPUA4F7u7AjNyO-VmJjixVizPDYL28kTlyujt5ae_MleA/exec', {
                 method: 'POST',
                 body: JSON.stringify(data),
                 mode: 'no-cors'
             })
             .then(() => {
-                // Show success message
                 alert('✅ Thank you! We received your information. We\'ll be in touch soon!');
                 document.getElementById('lead-form').reset();
-                isSubmitting = false; // Разреши отправку снова
-                // Optional: scroll to top
+                isSubmitting = false;
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             })
             .catch(error => {
                 console.error('Error:', error);
-                // Still show success since no-cors mode doesn't allow error checking
                 alert('✅ Thank you! We received your information. We\'ll be in touch soon!');
                 document.getElementById('lead-form').reset();
-                isSubmitting = false; // Разреши отправку снова
+                isSubmitting = false;
             });
         });
     </script>
