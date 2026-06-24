@@ -272,10 +272,6 @@
             animation: pulse-glow 2.5s ease-in-out infinite;
         }
 
-        .tally-form {
-            padding: 3rem 0;
-        }
-
         /* SECTIONS WITH BACKGROUNDS */
         .section-alt {
             background: linear-gradient(to bottom, transparent, rgba(159, 18, 57, 0.1));
@@ -427,6 +423,67 @@
 
         .step-content p {
             color: #cbd5e1;
+        }
+
+        /* FORM STYLES */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 0.75rem;
+            border: 1px solid rgba(244, 114, 182, 0.3);
+            background: rgba(30, 41, 59, 0.6);
+            color: #ffffff;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: rgba(244, 114, 182, 0.8);
+            box-shadow: 0 0 0 3px rgba(244, 114, 182, 0.1);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .form-submit {
+            flex: 1;
+            padding: 1rem;
+            background: linear-gradient(to right, #ec4899, #facc15, #f97316);
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 0.75rem;
+            cursor: pointer;
+            transition: box-shadow 0.3s;
+        }
+
+        .form-submit:hover {
+            box-shadow: 0 0 20px rgba(236, 72, 153, 0.4);
         }
 
         /* SOCIAL PROOF */
@@ -762,14 +819,42 @@
     <!-- LEAD CAPTURE -->
     <section id="lead-capture" class="section-alt">
         <div class="container">
-            <div style="max-width: 900px; margin: 0 auto;">
+            <div style="max-width: 700px; margin: 0 auto;">
                 <h2 style="margin-bottom: 1rem;">Get Your Free Music Strategy Guide</h2>
                 <p style="text-align: center; color: #cbd5e1; margin-bottom: 3rem; font-size: 1.125rem;">Tell us about your venue and we'll create a personalized music strategy. No cost. No strings attached.</p>
                 
-                <div class="tally-form" style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.4)); padding: 2rem; border-radius: 1.5rem; border: 1px solid rgba(71, 85, 105, 0.5); backdrop-filter: blur(10px);">
-                    <iframe data-tally-src="https://tally.so/embed/XxN7Nd?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="744" frameborder="0" marginheight="0" marginwidth="0" title="Get Free Music Strategy Guide"></iframe>
-                    <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
-                </div>
+                <form id="lead-form" style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.4)); padding: 2.5rem; border-radius: 1.5rem; border: 1px solid rgba(71, 85, 105, 0.5); backdrop-filter: blur(10px);">
+                    <div class="form-group">
+                        <label class="form-label" for="email">Email *</label>
+                        <input type="email" id="email" name="email" class="form-input" placeholder="your@email.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="name">First Name *</label>
+                        <input type="text" id="name" name="name" class="form-input" placeholder="Your Name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="venue-type">Venue Type *</label>
+                        <select id="venue-type" name="venue_type" class="form-select" required>
+                            <option value="">Select venue type...</option>
+                            <option value="Restaurant">Restaurant</option>
+                            <option value="Bar / Lounge">Bar / Lounge</option>
+                            <option value="Cafe">Cafe</option>
+                            <option value="Nightclub">Nightclub</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="message">Any questions? (optional)</label>
+                        <textarea id="message" name="message" class="form-textarea" placeholder="Tell us anything else..."></textarea>
+                    </div>
+
+                    <div class="form-buttons">
+                        <button type="submit" class="form-submit">Submit</button>
+                    </div>
+                </form>
             </div>
         </div>
     </section>
@@ -888,6 +973,23 @@
                 icon.style.transform = 'rotate(0deg)';
             }
         }
+
+        // Form submission
+        document.getElementById('lead-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const name = document.getElementById('name').value;
+            const venueType = document.getElementById('venue-type').value;
+            const message = document.getElementById('message').value;
+            
+            // Send to Telegram via your backend or email service
+            const mailtoLink = `mailto:whywemusic@yahoo.com?subject=New Lead: ${name}&body=Email: ${email}%0AVenue Type: ${venueType}%0AMessage: ${message}`;
+            window.location.href = mailtoLink;
+            
+            // Reset form
+            this.reset();
+        });
     </script>
 </body>
 </html>
