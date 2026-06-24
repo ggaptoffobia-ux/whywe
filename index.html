@@ -554,6 +554,7 @@
                 <button class="nav-link" data-section="solutions">Solution</button>
                 <button class="nav-link" data-section="pricing">Pricing</button>
                 <button class="nav-link" data-section="how-it-works">How It Works</button>
+                <button class="nav-link" data-section="faq">FAQ</button>
                 <button class="nav-link" data-section="social-proof">Clients</button>
                 <button class="nav-link" data-section="cta">Contact</button>
             </div>
@@ -567,6 +568,7 @@
             <button class="nav-link" data-section="solutions">Solution</button>
             <button class="nav-link" data-section="pricing">Pricing</button>
             <button class="nav-link" data-section="how-it-works">How It Works</button>
+            <button class="nav-link" data-section="faq">FAQ</button>
             <button class="nav-link" data-section="social-proof">Clients</button>
             <button class="nav-link" data-section="cta">Contact</button>
         </div>
@@ -689,6 +691,66 @@
         </div>
     </section>
 
+    <!-- FAQ -->
+    <section id="faq" class="section-alt">
+        <div class="container">
+            <div style="max-width: 900px; margin: 0 auto;">
+                <h2>Frequently Asked Questions</h2>
+                
+                <div style="border-radius: 1.5rem; background: linear-gradient(135deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.4)); border: 1px solid rgba(71, 85, 105, 0.5); overflow: hidden; backdrop-filter: blur(10px);">
+                    <div class="faq-header" onclick="toggleFAQ(this)" style="padding: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 1.25rem; background: linear-gradient(to right, rgba(244, 114, 182, 0.1), rgba(251, 146, 60, 0.1)); transition: all 0.3s ease;">
+                        <span>Questions & Answers</span>
+                        <span class="faq-toggle-icon" style="font-size: 1.5rem; transition: transform 0.3s ease; color: #f472b6;">▼</span>
+                    </div>
+                    
+                    <div class="faq-content" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
+                        <div style="padding: 2rem; border-top: 1px solid rgba(244, 114, 182, 0.2); display: flex; flex-direction: column; gap: 1.5rem;">
+                            <div style="padding-bottom: 1.5rem; border-bottom: 1px solid rgba(244, 114, 182, 0.15);">
+                                <div style="font-weight: 600; background: linear-gradient(to right, #f472b6, #fb923c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.75rem; font-size: 1.05rem;">How does WHY WE work?</div>
+                                <div style="color: #cbd5e1; line-height: 1.7; font-size: 0.95rem;">We audit your venue, create a music strategy, integrate it into your system, and provide ongoing support.</div>
+                            </div>
+                            
+                            <div style="padding-bottom: 1.5rem; border-bottom: 1px solid rgba(244, 114, 182, 0.15);">
+                                <div style="font-weight: 600; background: linear-gradient(to right, #f472b6, #fb923c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.75rem; font-size: 1.05rem;">What's the pricing?</div>
+                                <div style="color: #cbd5e1; line-height: 1.7; font-size: 0.95rem;">$500-$1,000 for setup + $44/month for streaming service subscription.</div>
+                            </div>
+                            
+                            <div style="padding-bottom: 1.5rem; border-bottom: 1px solid rgba(244, 114, 182, 0.15);">
+                                <div style="font-weight: 600; background: linear-gradient(to right, #f472b6, #fb923c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.75rem; font-size: 1.05rem;">What music do you use?</div>
+                                <div style="color: #cbd5e1; line-height: 1.7; font-size: 0.95rem;">Licensed, professionally curated music that matches your venue's style and identity.</div>
+                            </div>
+                            
+                            <div style="padding-bottom: 1.5rem; border-bottom: 1px solid rgba(244, 114, 182, 0.15);">
+                                <div style="font-weight: 600; background: linear-gradient(to right, #f472b6, #fb923c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.75rem; font-size: 1.05rem;">Do you guarantee EMRA compliance?</div>
+                                <div style="color: #cbd5e1; line-height: 1.7; font-size: 0.95rem;">Yes, 100% EMRA compliant. Zero fines. Note: EMRA licensing fees are paid separately.</div>
+                            </div>
+                            
+                            <div style="padding-bottom: 1.5rem; border-bottom: 1px solid rgba(244, 114, 182, 0.15);">
+                                <div style="font-weight: 600; background: linear-gradient(to right, #f472b6, #fb923c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.75rem; font-size: 1.05rem;">How long does implementation take?</div>
+                                <div style="color: #cbd5e1; line-height: 1.7; font-size: 0.95rem;">24 hours to 1 week, depending on your system setup.</div>
+                            </div>
+                            
+                            <div style="padding-bottom: 1.5rem; border-bottom: 1px solid rgba(244, 114, 182, 0.15);">
+                                <div style="font-weight: 600; background: linear-gradient(to right, #f472b6, #fb923c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.75rem; font-size: 1.05rem;">Can we try before paying?</div>
+                                <div style="color: #cbd5e1; line-height: 1.7; font-size: 0.95rem;">Yes. Start with a free trial playlist after your audit. Zero risk.</div>
+                            </div>
+                            
+                            <div style="padding-bottom: 1.5rem; border-bottom: 1px solid rgba(244, 114, 182, 0.15);">
+                                <div style="font-weight: 600; background: linear-gradient(to right, #f472b6, #fb923c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.75rem; font-size: 1.05rem;">What if we don't like the music?</div>
+                                <div style="color: #cbd5e1; line-height: 1.7; font-size: 0.95rem;">We work with you until it's perfect. Full support and adjustments included.</div>
+                            </div>
+                            
+                            <div style="padding-bottom: 0;">
+                                <div style="font-weight: 600; background: linear-gradient(to right, #f472b6, #fb923c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.75rem; font-size: 1.05rem;">What venues use WHY WE?</div>
+                                <div style="color: #cbd5e1; line-height: 1.7; font-size: 0.95rem;">Restaurants, bars, lounges, hookah lounges, and cafes across the UAE.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- SOCIAL PROOF -->
     <section id="social-proof">
         <div class="container">
@@ -769,7 +831,7 @@
         });
 
         // Navigation
-        const navbar = document.getElementById('navbar') || document.querySelector('nav');
+        const navbar = document.querySelector('nav');
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const navLinks = document.querySelectorAll('.nav-link');
@@ -812,6 +874,20 @@
                 });
             }
         });
+
+        // FAQ toggle
+        function toggleFAQ(header) {
+            const content = header.nextElementSibling;
+            const icon = header.querySelector('.faq-toggle-icon');
+            
+            if (content.style.maxHeight === '0px' || !content.style.maxHeight) {
+                content.style.maxHeight = '1500px';
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                content.style.maxHeight = '0px';
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
     </script>
 </body>
 </html>
