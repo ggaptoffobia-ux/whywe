@@ -975,8 +975,14 @@
         }
 
         // Form submission to Google Sheets via Apps Script
+        let isSubmitting = false; // Флаг для блокировки повторной отправки
+        
         document.getElementById('lead-form').addEventListener('submit', function(e) {
             e.preventDefault();
+            
+            // Если уже отправляется - не отправляй еще раз
+            if (isSubmitting) return;
+            isSubmitting = true;
             
             const formData = new FormData(this);
             const data = {
@@ -996,6 +1002,7 @@
                 // Show success message
                 alert('✅ Thank you! We received your information. We\'ll be in touch soon!');
                 document.getElementById('lead-form').reset();
+                isSubmitting = false; // Разреши отправку снова
                 // Optional: scroll to top
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             })
@@ -1004,6 +1011,7 @@
                 // Still show success since no-cors mode doesn't allow error checking
                 alert('✅ Thank you! We received your information. We\'ll be in touch soon!');
                 document.getElementById('lead-form').reset();
+                isSubmitting = false; // Разреши отправку снова
             });
         });
     </script>
