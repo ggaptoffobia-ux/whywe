@@ -974,21 +974,48 @@
             }
         }
 
-        // Form submission
+        // Form submission to Tally
         document.getElementById('lead-form').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const email = document.getElementById('email').value;
-            const name = document.getElementById('name').value;
-            const venueType = document.getElementById('venue-type').value;
-            const message = document.getElementById('message').value;
+            const formData = new FormData(this);
+            const data = {
+                email: formData.get('email'),
+                name: formData.get('name'),
+                venue_type: formData.get('venue_type'),
+                message: formData.get('message')
+            };
             
-            // Send to Telegram via your backend or email service
-            const mailtoLink = `mailto:whywemusic@yahoo.com?subject=New Lead: ${name}&body=Email: ${email}%0AVenue Type: ${venueType}%0AMessage: ${message}`;
-            window.location.href = mailtoLink;
-            
-            // Reset form
-            this.reset();
+            // Send to Tally
+            fetch('https://tally.so/api/forms/XxN7Nd/submissions', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    data: [
+                        { key: 'email', value: data.email },
+                        { key: 'name', value: data.name },
+                        { key: 'venue_type', value: data.venue_type },
+                        { key: 'message', value: data.message }
+                    ]
+                })
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Show success message
+                    alert('✅ Thank you! We received your information. We\'ll be in touch soon!');
+                    document.getElementById('lead-form').reset();
+                    // Optional: scroll to top
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else {
+                    alert('Something went wrong. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error submitting form. Please try again.');
+            });
         });
     </script>
 </body>
