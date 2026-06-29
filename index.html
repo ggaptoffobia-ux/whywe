@@ -328,6 +328,174 @@
         .card.yellow h3 { color: #fcd34d; }
         .card.orange h3 { color: #fb923c; }
 
+        /* PROBLEMS BLOCK */
+        .problems-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .problem-card {
+            padding: 2rem;
+            border-radius: 1.5rem;
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.5));
+            border: 1px solid rgba(71, 85, 105, 0.5);
+            backdrop-filter: blur(10px);
+            transition: border-color 0.3s, transform 0.3s;
+        }
+
+        .problem-card:hover {
+            border-color: rgba(244, 114, 182, 0.5);
+            transform: translateY(-4px);
+        }
+
+        .problem-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .problem-card h3 {
+            font-size: 1.35rem;
+            margin-bottom: 1rem;
+            color: #f472b6;
+        }
+
+        .problem-pain {
+            color: #94a3b8;
+            font-style: italic;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            padding-left: 1rem;
+            border-left: 2px solid rgba(244, 114, 182, 0.4);
+        }
+
+        .problem-solution {
+            color: #e2e8f0;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .problem-solution strong {
+            color: #fcd34d;
+        }
+
+        /* ENHANCED PRICING — feature list & popular badge */
+        .price-card {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .price-card.featured {
+            border: 2px solid rgba(252, 211, 77, 0.6);
+            background: linear-gradient(135deg, rgba(252, 211, 77, 0.08), rgba(251, 146, 60, 0.06));
+            transform: scale(1.03);
+        }
+
+        .price-badge {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(to right, #fcd34d, #fb923c);
+            color: #0f172a;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.35rem 1rem;
+            border-radius: 9999px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .price-tagline {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            margin-bottom: 1.25rem;
+            min-height: 2.6em;
+        }
+
+        .price-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.75rem 0;
+            flex-grow: 1;
+        }
+
+        .price-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            padding: 0.6rem 0;
+            color: #e2e8f0;
+            font-size: 0.95rem;
+            border-bottom: 1px solid rgba(71, 85, 105, 0.25);
+        }
+
+        .price-features li:last-child {
+            border-bottom: none;
+        }
+
+        .price-features .feat-label {
+            color: #94a3b8;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            display: block;
+            margin-bottom: 0.1rem;
+        }
+
+        .price-features .check {
+            color: #34d399;
+            flex-shrink: 0;
+            font-weight: 700;
+            margin-top: 0.05rem;
+        }
+
+        .price-cta {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 0.9rem 1rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            margin-top: auto;
+        }
+
+        .price-card.pink .price-cta {
+            background: rgba(244, 114, 182, 0.15);
+            border: 1px solid rgba(244, 114, 182, 0.5);
+            color: #f472b6;
+        }
+        .price-card.pink .price-cta:hover {
+            background: rgba(244, 114, 182, 0.3);
+        }
+
+        .price-card.yellow .price-cta {
+            background: linear-gradient(to right, #fcd34d, #fb923c);
+            color: #0f172a;
+        }
+        .price-card.yellow .price-cta:hover {
+            filter: brightness(1.1);
+            transform: translateY(-2px);
+        }
+
+        .price-card.orange .price-cta {
+            background: rgba(251, 146, 60, 0.15);
+            border: 1px solid rgba(251, 146, 60, 0.5);
+            color: #fb923c;
+        }
+        .price-card.orange .price-cta:hover {
+            background: rgba(251, 146, 60, 0.3);
+        }
+
         /* CASE STUDIES */
         .case-study {
             margin-bottom: 3rem;
@@ -681,8 +849,16 @@
                 grid-template-columns: 1fr;
             }
 
+            .problems-grid {
+                grid-template-columns: 1fr;
+            }
+
             .pricing-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .price-card.featured {
+                transform: none;
             }
 
             .step {
@@ -723,7 +899,7 @@
                 <button class="nav-link" data-section="cta">Contact</button>
             </div>
             
-            <button id="mobile-menu-btn"></button>
+            <button id="mobile-menu-btn" aria-label="Menu">☰</button>
         </div>
         
         <div id="mobile-menu">
@@ -832,27 +1008,83 @@
         </div>
     </section>
 
+    <!-- BUSINESS PROBLEMS -->
+    <section id="problems" class="section-alt">
+        <div class="container">
+            <h2>Why Your Playlist Is an Invisible Hole in Your Budget</h2>
+            <p style="text-align: center; color: #94a3b8; margin-bottom: 1rem; max-width: 700px; margin-left: auto; margin-right: auto;">You think you need playlists. You don't. You need a solution to these four problems.</p>
+            <div class="problems-grid">
+                <div class="problem-card">
+                    <span class="problem-icon">🛡️</span>
+                    <h3>A Legal Time Bomb</h3>
+                    <p class="problem-pain">"Come on, who actually cares about my playlist?"</p>
+                    <p class="problem-solution">Fines for unlicensed music in the UAE are real. The <strong>Legal &amp; Smooth</strong> package is your insurance policy.</p>
+                </div>
+                <div class="problem-card">
+                    <span class="problem-icon">📈</span>
+                    <h3>You're Rushing Guests Out</h3>
+                    <p class="problem-pain">"The music feels upbeat, but people drink up and leave too fast."</p>
+                    <p class="problem-solution">The wrong tempo steals up to 25% of your check. <strong>Mood Master</strong> syncs the music to the register.</p>
+                </div>
+                <div class="problem-card">
+                    <span class="problem-icon">🔑</span>
+                    <h3>You're Just Background Noise</h3>
+                    <p class="problem-pain">"Premium interior, great product — but nobody remembers us."</p>
+                    <p class="problem-solution"><strong>Sonic ID</strong> builds your sonic DNA — the sound guests Shazam and come back for.</p>
+                </div>
+                <div class="problem-card">
+                    <span class="problem-icon">🎯</span>
+                    <h3>Chaos Instead of a System</h3>
+                    <p class="problem-pain">"The shift's in a sad mood today — and so is the whole room."</p>
+                    <p class="problem-solution">We give you a system. Consistent premium atmosphere 365 days a year, without your supervision.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- PRICING -->
     <section id="pricing">
         <div class="container">
             <h2>Choose Your Level</h2>
-            <p style="text-align: center; color: #94a3b8; margin-bottom: 4rem;">One-time setup + ongoing monthly costs</p>
+            <p style="text-align: center; color: #94a3b8; margin-bottom: 4rem;">One-time setup + low monthly streaming &amp; licensing</p>
             
             <div class="pricing-grid">
                 <div class="price-card pink">
-                    <h3>Basic</h3>
+                    <h3>🛡️ Legal &amp; Smooth</h3>
                     <div class="price-amount">$500</div>
-                    <p>One playlist. Repeats daily.</p>
+                    <p class="price-tagline">Peace of mind &amp; compliance. Safety and a solid background.</p>
+                    <ul class="price-features">
+                        <li><span class="check">✓</span><span><span class="feat-label">Scenarios</span>1 universal playlist</span></li>
+                        <li><span class="check">✓</span><span><span class="feat-label">Rotation</span>Daily refresh</span></li>
+                        <li><span class="check">✓</span><span><span class="feat-label">Support</span>Standard setup</span></li>
+                        <li><span class="check">✓</span><span><span class="feat-label">Compliance</span>Full EMRA legal coverage</span></li>
+                    </ul>
+                    <a href="#lead-capture" class="price-cta" data-package="Legal &amp; Smooth">Close the legal question</a>
                 </div>
-                <div class="price-card yellow">
-                    <h3>Medium</h3>
+                <div class="price-card yellow featured">
+                    <span class="price-badge">Most Popular</span>
+                    <h3>🎯 Mood Master</h3>
                     <div class="price-amount">$750</div>
-                    <p>Three playlists. Three days of music.</p>
+                    <p class="price-tagline">Mood engineering. Retention and a higher average check.</p>
+                    <ul class="price-features">
+                        <li><span class="check">✓</span><span><span class="feat-label">Scenarios</span>3 day-phases (morning / lunch / evening)</span></li>
+                        <li><span class="check">✓</span><span><span class="feat-label">Rotation</span>3-day cycle</span></li>
+                        <li><span class="check">✓</span><span><span class="feat-label">Support</span>Priority support</span></li>
+                        <li><span class="check">✓</span><span><span class="feat-label">Compliance</span>Full EMRA legal coverage</span></li>
+                    </ul>
+                    <a href="#lead-capture" class="price-cta" data-package="Mood Master">Increase the average check</a>
                 </div>
                 <div class="price-card orange">
-                    <h3>Premium</h3>
+                    <h3>💎 Sonic ID</h3>
                     <div class="price-amount">$1,000</div>
-                    <p>Seven playlists. Seven days. Zero repeats.</p>
+                    <p class="price-tagline">Your brand's sonic DNA. Recognition and a cult following.</p>
+                    <ul class="price-features">
+                        <li><span class="check">✓</span><span><span class="feat-label">Scenarios</span>5 phases (incl. late night)</span></li>
+                        <li><span class="check">✓</span><span><span class="feat-label">Rotation</span>Weekly — 7 playlists</span></li>
+                        <li><span class="check">✓</span><span><span class="feat-label">Support</span>Personal curator</span></li>
+                        <li><span class="check">✓</span><span><span class="feat-label">Compliance</span>Full EMRA legal coverage</span></li>
+                    </ul>
+                    <a href="#lead-capture" class="price-cta" data-package="Sonic ID">Create a unique style</a>
                 </div>
             </div>
 
@@ -868,7 +1100,7 @@
                 </div>
                 <div class="price-row total">
                     <span>Total Monthly</span>
-                    <span>$44/mo</span>
+                    <span>from $44/mo</span>
                 </div>
             </div>
         </div>
@@ -1037,6 +1269,8 @@
                         <textarea name="message" style="width: 100%; padding: 0.75rem 1rem; border-radius: 0.75rem; border: 1px solid rgba(244, 114, 182, 0.3); background: rgba(30, 41, 59, 0.6); color: #ffffff; font-size: 1rem; resize: vertical; min-height: 120px;" placeholder="Tell us anything else..."></textarea>
                     </div>
 
+                    <input type="hidden" name="selected_package" id="selected-package" value="">
+
                     <button type="submit" style="width: 100%; padding: 1rem; background: linear-gradient(to right, #ec4899, #facc15, #f97316); color: white; font-weight: bold; border: none; border-radius: 0.75rem; cursor: pointer; transition: box-shadow 0.3s;">Submit</button>
                 </form>
             </div>
@@ -1110,7 +1344,7 @@
 
         mobileMenuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('active');
-            mobileMenuBtn.textContent = mobileMenu.classList.contains('active') ? '' : '';
+            mobileMenuBtn.textContent = mobileMenu.classList.contains('active') ? '✕' : '☰';
         });
 
         navLinks.forEach(link => {
@@ -1121,7 +1355,7 @@
                 if (section) {
                     section.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     mobileMenu.classList.remove('active');
-                    mobileMenuBtn.textContent = '';
+                    mobileMenuBtn.textContent = '☰';
                 }
             });
         });
@@ -1137,6 +1371,32 @@
                     }
                 });
             }
+        });
+
+        // Pricing CTA buttons — prefill package, scroll to form, focus name
+        const priceCtas = document.querySelectorAll('.price-cta');
+        priceCtas.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const pkg = btn.getAttribute('data-package');
+                const hiddenField = document.getElementById('selected-package');
+                const messageField = document.querySelector('#lead-form textarea[name="message"]');
+                if (hiddenField) hiddenField.value = pkg;
+                if (messageField && pkg) {
+                    const prefill = "I'm interested in the " + pkg + " package.";
+                    if (!messageField.value.trim()) {
+                        messageField.value = prefill;
+                    }
+                }
+                const leadSection = document.getElementById('lead-capture');
+                if (leadSection) {
+                    leadSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    setTimeout(() => {
+                        const nameField = document.querySelector('#lead-form input[name="name"]');
+                        if (nameField) nameField.focus();
+                    }, 600);
+                }
+            });
         });
 
         // Form submission to Google Sheets via Apps Script
