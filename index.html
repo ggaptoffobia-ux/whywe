@@ -578,6 +578,16 @@
             margin-bottom: 0.5rem;
         }
 
+        .price-card h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .price-card h3 svg {
+            flex-shrink: 0;
+        }
+
         .price-amount {
             font-size: 2.25rem;
             font-weight: bold;
@@ -1015,25 +1025,25 @@
             <p style="text-align: center; color: #94a3b8; margin-bottom: 1rem; max-width: 700px; margin-left: auto; margin-right: auto;">You think you need playlists. You don't. You need a solution to these four problems.</p>
             <div class="problems-grid">
                 <div class="problem-card">
-                    <span class="problem-icon">🛡️</span>
+                    <span class="problem-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#f472b6" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
                     <h3>A Legal Time Bomb</h3>
                     <p class="problem-pain">"Come on, who actually cares about my playlist?"</p>
                     <p class="problem-solution">Fines for unlicensed music in the UAE are real. The <strong>Legal &amp; Smooth</strong> package is your insurance policy.</p>
                 </div>
                 <div class="problem-card">
-                    <span class="problem-icon">📈</span>
+                    <span class="problem-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#fcd34d" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="15 7 21 7 21 13"/></svg></span>
                     <h3>You're Rushing Guests Out</h3>
                     <p class="problem-pain">"The music feels upbeat, but people drink up and leave too fast."</p>
                     <p class="problem-solution">The wrong tempo steals up to 25% of your check. <strong>Mood Master</strong> syncs the music to the register.</p>
                 </div>
                 <div class="problem-card">
-                    <span class="problem-icon">🔑</span>
+                    <span class="problem-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#fb923c" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12a10 10 0 0 1 18-6"/><path d="M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2"/><path d="M17.29 21.02c.12-.6.43-2.3.5-3.02"/><path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"/><path d="M8.65 22c.21-.66.45-1.32.57-2"/><path d="M14 13.12c0 2.38 0 6.38-1 8.88"/><path d="M2 16h.01"/><path d="M21.8 16c.2-2 .131-5.354 0-6"/><path d="M9 6.8a6 6 0 0 1 9 5.2c0 .47 0 1.17-.02 2"/></svg></span>
                     <h3>You're Just Background Noise</h3>
                     <p class="problem-pain">"Premium interior, great product — but nobody remembers us."</p>
                     <p class="problem-solution"><strong>Sonic ID</strong> builds your sonic DNA — the sound guests Shazam and come back for.</p>
                 </div>
                 <div class="problem-card">
-                    <span class="problem-icon">🎯</span>
+                    <span class="problem-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="#a78bfa"/></svg></span>
                     <h3>Chaos Instead of a System</h3>
                     <p class="problem-pain">"The shift's in a sad mood today — and so is the whole room."</p>
                     <p class="problem-solution">We give you a system. Consistent premium atmosphere 365 days a year, without your supervision.</p>
@@ -1050,7 +1060,7 @@
             
             <div class="pricing-grid">
                 <div class="price-card pink">
-                    <h3>🛡️ Legal &amp; Smooth</h3>
+                    <h3><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f472b6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Legal &amp; Smooth</h3>
                     <div class="price-amount">$500</div>
                     <p class="price-tagline">Peace of mind &amp; compliance. Safety and a solid background.</p>
                     <ul class="price-features">
@@ -1063,7 +1073,7 @@
                 </div>
                 <div class="price-card yellow featured">
                     <span class="price-badge">Most Popular</span>
-                    <h3>🎯 Mood Master</h3>
+                    <h3><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fcd34d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="#fcd34d"/></svg>Mood Master</h3>
                     <div class="price-amount">$750</div>
                     <p class="price-tagline">Mood engineering. Retention and a higher average check.</p>
                     <ul class="price-features">
@@ -1075,7 +1085,7 @@
                     <a href="#lead-capture" class="price-cta" data-package="Mood Master">Increase the average check</a>
                 </div>
                 <div class="price-card orange">
-                    <h3>💎 Sonic ID</h3>
+                    <h3><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fb923c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20"/><path d="M12 3 8 9l4 12 4-12-4-6"/></svg>Sonic ID</h3>
                     <div class="price-amount">$1,000</div>
                     <p class="price-tagline">Your brand's sonic DNA. Recognition and a cult following.</p>
                     <ul class="price-features">
