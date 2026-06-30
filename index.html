@@ -105,12 +105,17 @@
             top: 0;
             z-index: 50;
             transition: all 0.3s ease;
-            padding: 1.5rem 0;
+            padding: 1rem 0;
+            background-color: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
         }
 
         nav.scrolled {
-            background-color: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(10px);
+            background-color: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
             padding: 0.75rem 0;
         }
 
@@ -134,8 +139,11 @@
 
         .nav-links {
             display: none;
-            gap: 2rem;
+            gap: 1.5rem;
             list-style: none;
+            align-items: center;
+            flex: 1;
+            justify-content: center;
         }
 
         @media (min-width: 768px) {
@@ -147,10 +155,13 @@
         .nav-links button {
             background: none;
             border: none;
-            color: white;
+            color: rgba(255,255,255,0.8);
             cursor: pointer;
-            font-size: 0.875rem;
+            font-size: 0.75rem;
             transition: color 0.3s;
+            white-space: nowrap;
+            line-height: 1;
+            letter-spacing: 0.02em;
         }
 
         .nav-links button:hover {
@@ -204,19 +215,14 @@
 
         /* LANG BAR */
         #lang-bar {
-            position: fixed;
-            top: 0;
-            right: 1.5rem;
-            z-index: 2000;
             display: flex;
             align-items: center;
             gap: 0.25rem;
-            padding: 0.4rem 0.75rem;
-            background: rgba(0,0,0,0.4);
-            backdrop-filter: blur(8px);
-            border-radius: 0 0 0.75rem 0.75rem;
-            border: 1px solid rgba(255,255,255,0.1);
-            border-top: none;
+            padding: 0.3rem 0.65rem;
+            background: rgba(255,255,255,0.07);
+            border-radius: 0.5rem;
+            border: 1px solid rgba(255,255,255,0.12);
+            flex-shrink: 0;
         }
         .lang-btn {
             background: none;
@@ -242,7 +248,7 @@
         /* Arabic mode */
         [lang="ar"] { font-family: 'Tajawal', system-ui, sans-serif; }
         [lang="ar"] nav { direction: rtl; }
-        [lang="ar"] #lang-bar { right: auto; left: 1.5rem; border-radius: 0 0 0.75rem 0.75rem; }
+        [lang="ar"] .nav-container { direction: rtl; }
         /* Arabic glyphs have deeper descenders — increase line-height to prevent clipping */
         [lang="ar"] .section-heading-fullwidth {
             line-height: 1.25;
@@ -973,13 +979,7 @@
     </div>
 
     <!-- LANGUAGE BAR -->
-    <div id="lang-bar">
-        <button class="lang-btn active" data-lang="en">EN</button>
-        <span class="lang-sep">|</span>
-        <button class="lang-btn" data-lang="ar">AR</button>
-    </div>
-
-    <!-- NAVIGATION -->
+        <!-- NAVIGATION -->
     <nav>
         <div class="nav-container">
             <div class="logo">WHY WE</div>
@@ -994,6 +994,11 @@
                 <button class="nav-link" data-section="cta">Contact</button>
             </div>
             
+            <div id="lang-bar">
+                <button class="lang-btn active" data-lang="en">EN</button>
+                <span class="lang-sep">|</span>
+                <button class="lang-btn" data-lang="ar">AR</button>
+            </div>
             <button id="mobile-menu-btn" aria-label="Menu">☰</button>
         </div>
         
@@ -1978,8 +1983,54 @@
             });
         }
 
-        document.addEventListener('DOMContentLoaded', fitAllHeadings);
+        document.addEventListener('DOMContentLoaded', function() {
+            fitAllHeadings();
+
+            // Initial step render
+            renderSteps('en');
+
+            // ── Mobile burger menu ──────────────────────────────────────
+            const mobileBtn  = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const langBar    = document.getElementById('lang-bar');
+
+            if (mobileBtn && mobileMenu) {
+                mobileBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    mobileMenu.classList.toggle('active');
+                });
+
+                // Close on outside click, but NOT when tapping the lang-bar
+                document.addEventListener('click', function(e) {
+                    if (
+                        !mobileMenu.contains(e.target) &&
+                        e.target !== mobileBtn &&
+                        !(langBar && langBar.contains(e.target))
+                    ) {
+                        mobileMenu.classList.remove('active');
+                    }
+                });
+            }
+
+            // ── Nav links → smooth scroll ───────────────────────────────
+            document.querySelectorAll('.nav-link[data-section]').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const target = document.getElementById(this.dataset.section);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                        // Close mobile menu after navigation
+                        if (mobileMenu) mobileMenu.classList.remove('active');
+                    }
+                });
+            });
+        });
+
         window.addEventListener('resize', fitAllHeadings);
+
+        // Nav scroll state
+        window.addEventListener('scroll', function() {
+            document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 40);
+        }, { passive: true });
     </script>
 </body>
 </html>
