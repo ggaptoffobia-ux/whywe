@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WHY WE - Music That's Legal, Curated & Atmospheric</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -203,6 +203,48 @@
         #mobile-menu button:hover {
             color: #f472b6;
         }
+
+        /* LANG BAR */
+        #lang-bar {
+            position: fixed;
+            top: 0;
+            right: 1.5rem;
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.4rem 0.75rem;
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(8px);
+            border-radius: 0 0 0.75rem 0.75rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-top: none;
+        }
+        .lang-btn {
+            background: none;
+            border: none;
+            color: #94a3b8;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 0.2rem 0.5rem;
+            border-radius: 0.4rem;
+            transition: all 0.2s;
+            letter-spacing: 0.05em;
+        }
+        .lang-btn.active {
+            background: linear-gradient(to right, #f472b6, #fb923c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .lang-btn:hover:not(.active) { color: #fff; }
+        .lang-sep { color: #475569; font-size: 0.8rem; }
+
+        /* Arabic mode */
+        [lang="ar"] { font-family: 'Tajawal', system-ui, sans-serif; }
+        [lang="ar"] nav { direction: rtl; }
+        [lang="ar"] #lang-bar { right: auto; left: 1.5rem; border-radius: 0 0 0.75rem 0.75rem; }
 
         /* SECTIONS */
         section {
@@ -920,6 +962,13 @@
         <div class="blob blob-6 float-6"></div>
     </div>
 
+    <!-- LANGUAGE BAR -->
+    <div id="lang-bar">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <span class="lang-sep">|</span>
+        <button class="lang-btn" data-lang="ar">AR</button>
+    </div>
+
     <!-- NAVIGATION -->
     <nav>
         <div class="nav-container">
@@ -1337,7 +1386,8 @@
                     <p><strong>Quick Response in Telegram</strong></p>
                 </div>
 
-                <a href="https://t.me/wermur" target="_blank" class="cta-btn pulse">📱 Message on Telegram</a>
+                <a href="https://wa.me/79101126766" target="_blank" class="cta-btn pulse">💬 Message on WhatsApp</a>
+                <a href="https://t.me/wermur" target="_blank" class="cta-btn pulse" style="margin-top: 1rem;">📱 Message on Telegram</a>
                 <div class="contact-info">
                     <a href="mailto:whywemusic@yahoo.com" class="contact-link">
                         whywemusic@yahoo.com
@@ -1361,20 +1411,8 @@
             { num: '05', title: 'Ongoing Support', desc: '24/7 support. Regular updates. Feedback-based adjustments.' }
         ];
 
-        // Render steps
-        const stepsContainer = document.getElementById('steps-container');
-        steps.forEach((step, idx) => {
-            const stepEl = document.createElement('div');
-            stepEl.className = `step step-item step-${idx + 1}`;
-            stepEl.innerHTML = `
-                <div class="step-number shimmer-effect">${step.num}</div>
-                <div class="step-content">
-                    <h3>${step.title}</h3>
-                    <p>${step.desc}</p>
-                </div>
-            `;
-            stepsContainer.appendChild(stepEl);
-        });
+        // Render steps (initial EN render via i18n)
+        renderSteps('en');
 
         // Navigation
         const navbar = document.querySelector('nav');
@@ -1484,6 +1522,419 @@
         });
     </script>
     <script>
+        // ── TRANSLATIONS ──────────────────────────────────────────────
+        const i18n = {
+            en: {
+                nav: ['Who We Are','Why Music Matters','Solution','Pricing','How It Works','Case Studies','Contact'],
+                hero_lines: ["Music That's Legal,","Curated & Atmospheric"],
+                hero_p: '+23% average check increase. Professional music for HoReCa venues.',
+                hero_btn1: 'Download Free PDF',
+                hero_btn2: 'Get Your Free Audit',
+                h_single: ['Who We Are','Why Music Matters','The Solution','Choose Your Level','How It Works','Already Working With Us','What Our Clients Say'],
+                h_problems: ['Why Your Playlist Is an','Invisible Hole in Your Budget'],
+                h_phases:   ['How We Identify','& Elevate Your Phases'],
+                h_cta:      ['Ready to Increase','Your Check Average?'],
+                steps: [
+                    { num:'01', title:'Assessment',      desc:'We audit your place — hours, peak days, demographics, current setup.' },
+                    { num:'02', title:'Strategy',        desc:'We build a music strategy aligned with your brand and business goals.' },
+                    { num:'03', title:'Track Selection', desc:'We curate tracks that keep guests engaged and increase spending.' },
+                    { num:'04', title:'Integration',     desc:'We integrate into your infrastructure — seamless connection to your audio system.' },
+                    { num:'05', title:'Ongoing Support', desc:'24/7 support. Regular updates. Feedback-based adjustments.' }
+                ],
+                wa_btn: '💬 Message on WhatsApp',
+                tg_btn: '📱 Message on Telegram',
+                wh1: '<strong>Available:</strong> Monday - Sunday, 10:00 - 22:00 Dubai Time',
+                wh2: '<strong>Quick Response in Telegram</strong>',
+                who_desc: 'DJs, musicians, and music strategists with 10+ years in hospitality across Dubai and the Middle East.',
+                who_stats: ['Venue Groups','Years Experience','Support'],
+                wmm_cards: [
+                    { h3:'Business Case', p:'Cornell University: right music = +23% average check. Guests spend more, stay longer, come back.' },
+                    { h3:'Guest Experience', p:"Great music creates the right mood. People feel it. When it's right, they feel at home." },
+                    { h3:'Staff Factor', p:'Good music = better vibe = better staff. Your team moves faster, smiles more, earns more tips.' }
+                ],
+                sol_cards: [
+                    { h3:'Curated', p:"Professional music selection. Every track reflects your venue's identity. Zero repetition. Maximum impact." },
+                    { h3:'Atmospheric', p:'Different music for different hours. Morning, lunch, dinner — each with its own vibe. Guests stay longer. Check increases.' },
+                    { h3:'Legal', p:'Full EMRA compliance. No fines. No risk. Your business is protected. Complete peace of mind.' }
+                ],
+                prob_sub: "You think you need playlists. You don't. You need a solution to these four problems.",
+                prob_cards: [
+                    { h3:'A Legal Time Bomb', pain:'"Come on, who actually cares about my playlist?"', sol:'Fines for unlicensed music in the UAE are real. The <strong>Legal &amp; Smooth</strong> package is your insurance policy.' },
+                    { h3:"You're Rushing Guests Out", pain:'"The music feels upbeat, but people drink up and leave too fast."', sol:'The wrong tempo steals up to 25% of your check. <strong>Mood Master</strong> syncs the music to the register.' },
+                    { h3:"You're Just Background Noise", pain:'"We have music, but guests don\'t notice it. They Shazam other places."', sol:'<strong>Sonic ID</strong> builds your sonic DNA — the sound guests Shazam and come back for.' },
+                    { h3:'Chaos Instead of a System', pain:'"The manager changes the playlist based on his mood. Every day is different."', sol:'We create a structured music system: right track, right time, right energy — automatically.' }
+                ],
+                price_sub: 'One-time setup + low monthly streaming & licensing',
+                price_badge: 'Most Popular',
+                price_cards: [
+                    { tagline:'Peace of mind & compliance. Safety and a solid background.', features:[{l:'Scenarios',t:'1 universal playlist'},{l:'Rotation',t:'Daily refresh'},{l:'Support',t:'Standard setup'},{l:'Compliance',t:'Full EMRA legal coverage'}], cta:'Close the legal question' },
+                    { tagline:'Mood engineering. Retention and a higher average check.', features:[{l:'Scenarios',t:'3 day-phases (morning / lunch / evening)'},{l:'Rotation',t:'3-day cycle'},{l:'Support',t:'Priority support'},{l:'Compliance',t:'Full EMRA legal coverage'}], cta:'Increase the average check' },
+                    { tagline:"Your brand's sonic DNA. Recognition and a cult following.", features:[{l:'Scenarios',t:'5 phases (incl. late night)'},{l:'Rotation',t:'Weekly — 7 playlists'},{l:'Support',t:'Personal curator'},{l:'Compliance',t:'Full EMRA legal coverage'}], cta:'Create a unique style' }
+                ],
+                phases_cards: [
+                    { h3:'Morning Phase', p:'Fresh energy. Coffee vibes. Subtle, sophisticated. Music that wakes without overwhelming. Sets the tone for the day.' },
+                    { h3:'Lunch Phase', p:'Social energy. People talking, connecting. Uplifting tracks that encourage lingering. Conversation + music in perfect balance.' },
+                    { h3:'Dinner Phase', p:'Sophistication. Elegance. Music that elevates the experience without dominating. Guests feel the craftsmanship.' }
+                ],
+                phases_desc: "During our audit, we identify the distinct phases of your venue's operation. Each phase has its own energy, audience, and purpose. We curate music that honors those phases — and creates seamless transitions between them.",
+                phases_cards4: { h3:'Night Phase', p:'Energy returns. Momentum builds. Music that energizes without overwhelming. Guests linger longer. Check grows.' },
+                track_h3: 'Our Track Record',
+                track_items: ['<strong>1000+</strong> DJ sets performed across clubs, lounges, festivals, and private events','<strong>500+</strong> original and curated tracks produced and arranged','<strong>50+</strong> festival appearances (regional and international)','<strong>20+</strong> film and commercial projects with original sound design','<strong>100+</strong> brands and commercial projects with music strategy'],
+                track_italic: "This isn't theory. We've lived music. We know how it works.",
+                understand_p: "We understand the business: how music affects guest spending patterns, how atmosphere drives loyalty, and how the right soundtrack creates an experience worth paying for. We're not just curators. We're your music strategists.",
+                audit_title: 'The Audit Process',
+                audit_intro: 'We come to your venue and observe:',
+                audit_items: ['What time do different crowds arrive?',"What's the energy at 10am vs 6pm vs 10pm?",'How do guests interact during different hours?',"What's your peak revenue time?",'What music is currently playing? How do guests react?',"What's the acoustic environment? (size, ceilings, materials)"],
+                audit_closing: 'From this, we map your unique phases. Then we build playlists that honor each phase, with smooth transitions that elevate the entire experience.',
+                monthly_h3: 'Monthly Costs',
+                monthly_rows: ['Streaming + Licensing','Optional: Manual Updates','Total Monthly'],
+                monthly_vals: ['$44/mo', '$100/mo', 'from $44/mo'],
+                lead_h2: 'Get Your Free Music Strategy Guide',
+                lead_desc: "Tell us about your venue and we'll create a personalized music strategy. No cost. No strings attached.",
+                lead_labels: ['Email *','First Name *','Venue Type *','Any questions? (optional)'],
+                lead_email_ph: 'your@email.com',
+                lead_name_ph: 'Your Name',
+                lead_venue_ph: 'Select venue type...',
+                lead_msg_ph: 'Tell us anything else...',
+                lead_submit: 'Submit',
+                testimonial_quote: '"Thank you WhyWe for implementing all our music ideas quickly. The curated playlist is perfect, and the way you organized it by time of day is exactly what we needed. Highly satisfied."',
+                testimonial_role: 'Lounge Manager, Hookah Place Marina',
+                cta_sub: "We'll conduct a free audit of your venue.<br>No cost. No commitment.",
+                footer: '© 2025 WHY WE. Music That\'s Legal, Curated & Atmospheric.',
+                case_studies: [
+                    { h3:'Hookah Place Marina', p:'Premium lounge in Marina with sophisticated clientele. Implemented dynamic playlists that shifted through morning elegance, lunch energy, and evening sophistication.' },
+                    { h3:'Hookah Place DIFC', p:'Business district venue catering to finance professionals. Curated a premium atmosphere that elevated the venue\'s positioning and increased average spend.' },
+                    { h3:'Hookah Place Downtown', p:'High-traffic venue requiring flexible music strategy. Implemented time-based playlists that kept guests engaged throughout the day, from casual daytime crowds to evening social scenes.' },
+                    { h3:'Hookah Place Abu Dhabi', p:'Expansion venue requiring cultural alignment. Developed music strategy that balanced local preferences with international appeal, creating a unique sonic identity.' }
+                ],
+            },
+            ar: {
+                nav: ['من نحن','لماذا الموسيقى مهمة','الحل','الأسعار','كيف يعمل','دراسات الحالة','تواصل معنا'],
+                hero_lines: ['موسيقى قانونية،','منتقاة وجذابة'],
+                hero_p: 'زيادة متوسط الفاتورة بنسبة ٢٣٪. موسيقى احترافية لمنشآت الضيافة.',
+                hero_btn1: 'تحميل PDF مجاني',
+                hero_btn2: 'احصل على تدقيقك المجاني',
+                h_single: ['من نحن','لماذا الموسيقى مهمة','الحل','اختر مستواك','كيف يعمل','يعملون معنا بالفعل','ما يقوله عملاؤنا'],
+                h_problems: ['قوائم تشغيلك ثغرة','غير مرئية في ميزانيتك'],
+                h_phases:   ['كيف نحدد','ونطور مراحلك'],
+                h_cta:      ['هل أنت مستعد لزيادة','متوسط فاتورتك؟'],
+                steps: [
+                    { num:'٠١', title:'التقييم',          desc:'ندرس مكانك — ساعات العمل، أيام الذروة، التركيبة السكانية، الإعداد الحالي.' },
+                    { num:'٠٢', title:'الاستراتيجية',     desc:'نبني استراتيجية موسيقية متوافقة مع علامتك التجارية وأهدافك التجارية.' },
+                    { num:'٠٣', title:'اختيار المقطوعات', desc:'نختار مقطوعات تبقي الضيوف منخرطين وتزيد الإنفاق.' },
+                    { num:'٠٤', title:'التكامل',           desc:'ندمج في بنيتك التحتية — اتصال سلس بنظام الصوت لديك.' },
+                    { num:'٠٥', title:'الدعم المستمر',    desc:'دعم ٢٤/٧. تحديثات منتظمة. تعديلات بناءً على التغذية الراجعة.' }
+                ],
+                wa_btn: '💬 تواصل عبر واتساب',
+                tg_btn: '📱 تواصل عبر تيليغرام',
+                wh1: '<strong>متاح:</strong> الاثنين - الأحد، ١٠:٠٠ - ٢٢:٠٠ بتوقيت دبي',
+                wh2: '<strong>رد سريع على تيليغرام</strong>',
+                who_desc: 'دي جي، موسيقيون، واستراتيجيو موسيقى بخبرة أكثر من ١٠ سنوات في قطاع الضيافة في دبي والشرق الأوسط.',
+                who_stats: ['مجموعات فنادق','سنوات خبرة','دعم'],
+                wmm_cards: [
+                    { h3:'الحالة التجارية', p:'جامعة كورنيل: الموسيقى المناسبة = +٢٣٪ متوسط الفاتورة. الضيوف ينفقون أكثر، يمكثون أطول، ويعودون.' },
+                    { h3:'تجربة الضيف', p:'الموسيقى الرائعة تخلق الجو المناسب. يشعر بها الناس. حين تكون صحيحة، يشعرون بالانتماء.' },
+                    { h3:'عامل الموظفين', p:'موسيقى جيدة = أجواء أفضل = موظفون أفضل. فريقك يتحرك أسرع، يبتسم أكثر، ويكسب إكرامية أعلى.' }
+                ],
+                sol_cards: [
+                    { h3:'منتقاة', p:'اختيار موسيقي احترافي. كل مقطوعة تعكس هوية مكانك. صفر تكرار. تأثير أقصى.' },
+                    { h3:'جذابة', p:'موسيقى مختلفة لكل ساعة. الصباح، الغداء، العشاء — كل منها بأجوائها الخاصة. الضيوف يمكثون أطول. الفاتورة ترتفع.' },
+                    { h3:'قانونية', p:'امتثال كامل لـ EMRA. لا غرامات. لا مخاطر. عملك محمي. راحة بال تامة.' }
+                ],
+                prob_sub: 'تعتقد أنك تحتاج قوائم تشغيل. لا تحتاج. تحتاج حلاً لهذه المشاكل الأربع.',
+                prob_cards: [
+                    { h3:'قنبلة موقوتة قانونية', pain:'"من يهتم فعلاً بقائمة تشغيلي؟"', sol:'غرامات الموسيقى غير المرخصة في الإمارات حقيقية. حزمة <strong>Legal & Smooth</strong> هي وثيقة تأمينك.' },
+                    { h3:'أنت تطرد الضيوف', pain:'"الموسيقى تبدو نشيطة، لكن الناس يشربون ويغادرون سريعاً."', sol:'الإيقاع الخاطئ يسرق ٢٥٪ من فاتورتك. <strong>Mood Master</strong> يزامن الموسيقى مع الكاشير.' },
+                    { h3:'أنت مجرد ضجيج خلفي', pain:'"لدينا موسيقى، لكن الضيوف لا يلاحظونها. يبحثون عن موسيقى أماكن أخرى."', sol:'<strong>Sonic ID</strong> يبني هويتك الصوتية — الصوت الذي يبحث عنه الضيوف ويعودون من أجله.' },
+                    { h3:'فوضى بدلاً من نظام', pain:'"المدير يغير قائمة التشغيل حسب مزاجه. كل يوم مختلف."', sol:'نبني نظاماً موسيقياً منظماً: المقطوعة الصحيحة، في الوقت الصحيح، بالطاقة الصحيحة — تلقائياً.' }
+                ],
+                price_sub: 'إعداد لمرة واحدة + اشتراك شهري منخفض للبث والترخيص',
+                price_badge: 'الأكثر شعبية',
+                price_cards: [
+                    { tagline:'راحة البال والامتثال. أمان وخلفية موسيقية صلبة.', features:[{l:'السيناريوهات',t:'قائمة تشغيل عالمية واحدة'},{l:'الدوران',t:'تحديث يومي'},{l:'الدعم',t:'إعداد قياسي'},{l:'الامتثال',t:'تغطية قانونية كاملة لـ EMRA'}], cta:'أغلق السؤال القانوني' },
+                    { tagline:'هندسة الأجواء. الاحتفاظ بالضيوف ومتوسط فاتورة أعلى.', features:[{l:'السيناريوهات',t:'3 مراحل يومية (صباح / غداء / مساء)'},{l:'الدوران',t:'دورة كل 3 أيام'},{l:'الدعم',t:'دعم ذو أولوية'},{l:'الامتثال',t:'تغطية قانونية كاملة لـ EMRA'}], cta:'زد متوسط الفاتورة' },
+                    { tagline:'الهوية الصوتية لعلامتك. تميّز وقاعدة معجبين.', features:[{l:'السيناريوهات',t:'5 مراحل (بما فيها وقت متأخر)'},{l:'الدوران',t:'أسبوعياً — 7 قوائم تشغيل'},{l:'الدعم',t:'قيّم شخصي'},{l:'الامتثال',t:'تغطية قانونية كاملة لـ EMRA'}], cta:'أنشئ أسلوباً فريداً' }
+                ],
+                phases_cards: [
+                    { h3:'مرحلة الصباح', p:'طاقة منعشة. أجواء القهوة. رقيق وراقٍ. موسيقى تُيقظ دون إرهاق. تضع نبرة اليوم.' },
+                    { h3:'مرحلة الغداء', p:'طاقة اجتماعية. الناس يتحدثون ويتواصلون. مقطوعات منتعشة تشجع على التمهّل. حوار وموسيقى في توازن مثالي.' },
+                    { h3:'مرحلة العشاء', p:'رقيّ وأناقة. موسيقى ترتقي بالتجربة دون أن تسيطر عليها. يشعر الضيوف بالحرفية.' }
+                ],
+                phases_desc: 'خلال تدقيقنا، نحدد المراحل المميزة لتشغيل مكانك. كل مرحلة لها طاقتها وجمهورها وهدفها الخاص. نختار الموسيقى التي تكرّم تلك المراحل وتخلق انتقالات سلسة بينها.',
+                phases_cards4: { h3:'مرحلة الليل', p:'تعود الطاقة. يتراكم الزخم. موسيقى تنشط دون إرهاق. الضيوف يمكثون أطول. الفاتورة ترتفع.' },
+                track_h3: 'سجلنا الحافل',
+                track_items: ['<strong>+١٠٠٠</strong> عرض DJ في النوادي والصالونات والمهرجانات والفعاليات الخاصة','<strong>+٥٠٠</strong> مقطوعة أصلية ومختارة تم إنتاجها وترتيبها','<strong>+٥٠</strong> ظهوراً في مهرجانات (إقليمية ودولية)','<strong>+٢٠</strong> مشروعاً سينمائياً وتجارياً بتصميم صوتي أصلي','<strong>+١٠٠</strong> علامة تجارية ومشروع تجاري مع استراتيجية موسيقية'],
+                track_italic: 'هذا ليس نظرية. عشنا الموسيقى. نعرف كيف تعمل.',
+                understand_p: 'نحن نفهم الأعمال: كيف تؤثر الموسيقى على أنماط إنفاق الضيوف، وكيف تعزز الأجواء الولاء، وكيف تخلق الموسيقى المناسبة تجربة تستحق الدفع. لسنا مجرد قيّمين. نحن استراتيجيو موسيقاك.',
+                audit_title: 'عملية التدقيق',
+                audit_intro: 'نأتي إلى مكانك ونلاحظ:',
+                audit_items: ['متى يصل أنواع مختلفة من الحضور؟','ما هي الطاقة في الساعة ١٠ صباحاً مقابل ٦ مساءً مقابل ١٠ مساءً؟','كيف يتفاعل الضيوف خلال ساعات مختلفة؟','ما هو وقت ذروة إيراداتك؟','ما الموسيقى التي تعزف حالياً؟ كيف يتفاعل الضيوف؟','ما هي البيئة الصوتية؟ (الحجم، الأسقف، المواد)'],
+                audit_closing: 'من هذا، نرسم خريطة مراحلك الفريدة. ثم نبني قوائم تشغيل تكرّم كل مرحلة، مع انتقالات سلسة ترتقي بالتجربة بأكملها.',
+                monthly_h3: 'التكاليف الشهرية',
+                monthly_rows: ['البث + الترخيص','اختياري: تحديثات يدوية','الإجمالي الشهري'],
+                monthly_vals: ['$44/شهر', '$100/شهر', 'من $44/شهر'],
+                lead_h2: 'احصل على دليل استراتيجيتك الموسيقية المجاني',
+                lead_desc: 'أخبرنا عن مكانك وسنبني استراتيجية موسيقية مخصصة. بلا تكلفة. بلا التزام.',
+                lead_labels: ['البريد الإلكتروني *','الاسم الأول *','نوع المكان *','أسئلة؟ (اختياري)'],
+                lead_email_ph: 'بريدك@الإلكتروني.com',
+                lead_name_ph: 'اسمك',
+                lead_venue_ph: 'اختر نوع المكان...',
+                lead_msg_ph: 'أخبرنا أي شيء آخر...',
+                lead_submit: 'إرسال',
+                testimonial_quote: '"شكراً لـ WhyWe على تنفيذ جميع أفكارنا الموسيقية بسرعة. قائمة التشغيل المنتقاة مثالية، والطريقة التي نظمتم بها حسب وقت اليوم هي بالضبط ما احتجناه. راضٍ جداً."',
+                testimonial_role: 'مدير الصالة، Hookah Place Marina',
+                cta_sub: 'سنجري تدقيقاً مجانياً لمكانك.<br>بلا تكلفة. بلا التزام.',
+                footer: '© ٢٠٢٥ WHY WE. موسيقى قانونية، منتقاة وجذابة.',
+                case_studies: [
+                    { h3:'Hookah Place Marina', p:'صالة راقية في مارينا بجمهور متطور. نفّذنا قوائم تشغيل ديناميكية تنتقل بسلاسة من أناقة الصباح إلى طاقة الغداء وتطور المساء.' },
+                    { h3:'Hookah Place DIFC', p:'مكان في الحي التجاري يخدم المحترفين الماليين. أوجدنا أجواءً راقية رفعت مستوى المكان وزادت متوسط الإنفاق.' },
+                    { h3:'Hookah Place Downtown', p:'مكان بحركة عالية يتطلب استراتيجية موسيقية مرنة. نفّذنا قوائم زمنية أبقت الضيوف منخرطين طوال اليوم، من الحشود غير الرسمية صباحاً إلى المشاهد الاجتماعية مساءً.' },
+                    { h3:'Hookah Place Abu Dhabi', p:'مكان توسع يتطلب التوافق الثقافي. طوّرنا استراتيجية موسيقية توازن التفضيلات المحلية مع الجاذبية الدولية، خلقت هوية صوتية فريدة.' }
+                ],
+            }
+        };
+
+        function renderSteps(lang) {
+            const container = document.getElementById('steps-container');
+            if (!container) return;
+            container.innerHTML = '';
+            i18n[lang].steps.forEach((step, idx) => {
+                const el = document.createElement('div');
+                el.className = `step step-item step-${idx + 1}`;
+                el.innerHTML = `<div class="step-number shimmer-effect">${step.num}</div><div class="step-content"><h3>${step.title}</h3><p>${step.desc}</p></div>`;
+                container.appendChild(el);
+            });
+        }
+
+        function applyLang(lang) {
+            const t = i18n[lang];
+            document.documentElement.lang = lang;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+            // Nav links (desktop x7 + mobile x7)
+            const navLinks = document.querySelectorAll('.nav-link');
+            t.nav.forEach((txt, i) => {
+                if (navLinks[i])   navLinks[i].textContent   = txt;
+                if (navLinks[i+7]) navLinks[i+7].textContent = txt;
+            });
+
+            // Hero h1 fit-lines
+            document.querySelectorAll('.hero .fit-line').forEach((el, i) => {
+                if (t.hero_lines[i]) el.textContent = t.hero_lines[i];
+            });
+
+            // Hero p & buttons
+            const heroContent = document.querySelector('.hero-content');
+            if (heroContent) {
+                const p = heroContent.querySelector('p');
+                if (p) p.textContent = t.hero_p;
+                const btns = heroContent.querySelectorAll('.cta-btn');
+                if (btns[0]) btns[0].textContent = t.hero_btn1;
+                if (btns[1]) btns[1].textContent = t.hero_btn2;
+            }
+
+            // Single-line fullwidth headings (in DOM order)
+            document.querySelectorAll('.section-heading-fullwidth').forEach((el, i) => {
+                if (t.h_single[i]) el.textContent = t.h_single[i];
+            });
+
+            // 2-line headings by section
+            document.querySelectorAll('#problems .fit-line').forEach((el, i) => {
+                if (t.h_problems[i]) el.textContent = t.h_problems[i];
+            });
+            document.querySelectorAll('#the-phases .fit-line').forEach((el, i) => {
+                if (t.h_phases[i]) el.textContent = t.h_phases[i];
+            });
+            document.querySelectorAll('#cta .fit-line').forEach((el, i) => {
+                if (t.h_cta[i]) el.textContent = t.h_cta[i];
+            });
+
+            // Steps re-render
+            renderSteps(lang);
+
+            // CTA buttons
+            const ctaBtns = document.querySelectorAll('#cta .cta-btn');
+            if (ctaBtns[0]) ctaBtns[0].innerHTML = t.wa_btn;
+            if (ctaBtns[1]) ctaBtns[1].innerHTML = t.tg_btn;
+
+            // Working hours
+            const whPs = document.querySelectorAll('.working-hours p');
+            if (whPs[0]) whPs[0].innerHTML = t.wh1;
+            if (whPs[1]) whPs[1].innerHTML = t.wh2;
+
+            // Who We Are — description & stat labels
+            const whoDesc = document.querySelector('#who-we-are .hero-content p, #who-we-are div[style*="max-width: 800px"] p');
+            if (whoDesc) whoDesc.textContent = t.who_desc;
+            document.querySelectorAll('#who-we-are .stats-grid > div').forEach((col, i) => {
+                const label = col.querySelector('div:last-child');
+                if (label && t.who_stats[i]) label.textContent = t.who_stats[i];
+            });
+
+            // Why Music Matters cards
+            document.querySelectorAll('#why-music-matters .card').forEach((card, i) => {
+                if (!t.wmm_cards[i]) return;
+                const h3 = card.querySelector('h3'), p = card.querySelector('p');
+                if (h3) h3.textContent = t.wmm_cards[i].h3;
+                if (p)  p.textContent  = t.wmm_cards[i].p;
+            });
+
+            // Solution cards
+            document.querySelectorAll('#solutions .card').forEach((card, i) => {
+                if (!t.sol_cards[i]) return;
+                const h3 = card.querySelector('h3'), p = card.querySelector('p');
+                if (h3) h3.textContent = t.sol_cards[i].h3;
+                if (p)  p.textContent  = t.sol_cards[i].p;
+            });
+
+            // Problems subtitle
+            const probSub = document.querySelector('#problems p[style*="text-align"]');
+            if (probSub) probSub.textContent = t.prob_sub;
+
+            // Problem cards
+            document.querySelectorAll('.problem-card').forEach((card, i) => {
+                if (!t.prob_cards[i]) return;
+                const h3   = card.querySelector('h3');
+                const pain = card.querySelector('.problem-pain');
+                const sol  = card.querySelector('.problem-solution');
+                if (h3)   h3.textContent    = t.prob_cards[i].h3;
+                if (pain) pain.textContent  = t.prob_cards[i].pain;
+                if (sol)  sol.innerHTML     = t.prob_cards[i].sol;
+            });
+
+            // Pricing subtitle
+            const priceSub = document.querySelector('#pricing p[style]');
+            if (priceSub) priceSub.textContent = t.price_sub;
+
+            // Pricing cards
+            document.querySelectorAll('.price-card').forEach((card, i) => {
+                const pc = t.price_cards[i]; if (!pc) return;
+                const tagline = card.querySelector('.price-tagline');
+                if (tagline) tagline.textContent = pc.tagline;
+                card.querySelectorAll('.price-features li').forEach((li, j) => {
+                    if (!pc.features[j]) return;
+                    const inner = li.querySelector('span:last-child');
+                    if (inner) inner.innerHTML = `<span class="feat-label">${pc.features[j].l}</span>${pc.features[j].t}`;
+                });
+                const cta = card.querySelector('.price-cta');
+                if (cta) cta.textContent = pc.cta;
+                const badge = card.querySelector('.price-badge');
+                if (badge) badge.textContent = t.price_badge;
+            });
+
+            // Phases cards (first 3 + night phase = 4th)
+            document.querySelectorAll('#the-phases .card').forEach((card, i) => {
+                const pc = i < 3 ? t.phases_cards[i] : t.phases_cards4; if (!pc) return;
+                const h3 = card.querySelector('h3'), p = card.querySelector('p');
+                if (h3) h3.textContent = pc.h3;
+                if (p)  p.textContent  = pc.p;
+            });
+
+            // Audit Process block (inside #the-phases)
+            const auditDiv = document.querySelector('#the-phases div[style*="margin-top: 3rem"]');
+            if (auditDiv) {
+                const h3 = auditDiv.querySelector('h3');
+                if (h3) h3.textContent = t.audit_title;
+                const introStrong = auditDiv.querySelector('p strong');
+                if (introStrong) introStrong.textContent = t.audit_intro;
+                auditDiv.querySelectorAll('ul li').forEach((li, i) => { if (t.audit_items[i]) li.textContent = t.audit_items[i]; });
+                const closingP = auditDiv.querySelector('p[style*="margin-top"]');
+                if (closingP) closingP.textContent = t.audit_closing;
+            }
+
+            // Our Track Record (inside #who-we-are)
+            const trackDiv = document.querySelector('#who-we-are div[style*="linear-gradient(135deg, rgba(236"]');
+            if (trackDiv) {
+                const h3 = trackDiv.querySelector('h3');
+                if (h3) h3.textContent = t.track_h3;
+                trackDiv.querySelectorAll('ul li').forEach((li, i) => { if (t.track_items[i]) li.innerHTML = t.track_items[i]; });
+                const italic = trackDiv.querySelector('p[style*="italic"]');
+                if (italic) italic.textContent = t.track_italic;
+            }
+            // "We understand the business" paragraph
+            const outerDiv = document.querySelector('#who-we-are div[style*="max-width: 800px"]');
+            if (outerDiv) {
+                const ps = outerDiv.querySelectorAll(':scope > p');
+                if (ps[0]) ps[0].textContent = t.who_desc;
+                if (ps[1]) ps[1].textContent = t.understand_p;
+            }
+
+            // Monthly Costs
+            const priceDetails = document.querySelector('.price-details');
+            if (priceDetails) {
+                const h3 = priceDetails.querySelector('h3');
+                if (h3) h3.textContent = t.monthly_h3;
+                priceDetails.querySelectorAll('.price-row').forEach((row, i) => {
+                    const spanFirst = row.querySelector('span:first-child');
+                    if (spanFirst && t.monthly_rows[i]) spanFirst.textContent = t.monthly_rows[i];
+                    const spanLast = row.querySelector('span:last-child');
+                    if (spanLast && t.monthly_vals && t.monthly_vals[i]) spanLast.textContent = t.monthly_vals[i];
+                });
+            }
+
+            // Lead capture form
+            const leadSec = document.querySelector('#lead-capture');
+            if (leadSec) {
+                const h2 = leadSec.querySelector('h2');
+                if (h2) h2.textContent = t.lead_h2;
+                const desc = leadSec.querySelector('p[style*="text-align"]');
+                if (desc) desc.textContent = t.lead_desc;
+                leadSec.querySelectorAll('label').forEach((lbl, i) => { if (t.lead_labels[i]) lbl.textContent = t.lead_labels[i]; });
+                const emailInput = leadSec.querySelector('input[type="email"]');
+                if (emailInput) emailInput.placeholder = t.lead_email_ph;
+                const nameInput = leadSec.querySelector('input[name="name"]');
+                if (nameInput) nameInput.placeholder = t.lead_name_ph;
+                const sel = leadSec.querySelector('select option:first-child');
+                if (sel) sel.textContent = t.lead_venue_ph;
+                const ta = leadSec.querySelector('textarea');
+                if (ta) ta.placeholder = t.lead_msg_ph;
+                const submitBtn = leadSec.querySelector('button[type="submit"]');
+                if (submitBtn) submitBtn.textContent = t.lead_submit;
+            }
+
+            // Testimonial
+            const testimonial = document.querySelector('.testimonial');
+            if (testimonial) {
+                const quote = testimonial.querySelector(':scope > p');
+                if (quote) quote.textContent = t.testimonial_quote;
+                const role = testimonial.querySelector('p[style*="#94a3b8"]');
+                if (role) role.textContent = t.testimonial_role;
+            }
+
+            // Phases description
+            const phasesDesc = document.querySelector('#the-phases p[style*="text-align"]');
+            if (phasesDesc) phasesDesc.textContent = t.phases_desc;
+
+            // CTA subtitle
+            const ctaSub = document.querySelector('.cta-section .container p');
+            if (ctaSub) ctaSub.innerHTML = t.cta_sub;
+
+            // Case studies
+            document.querySelectorAll('.case-study').forEach((cs, i) => {
+                const cs_t = t.case_studies[i]; if (!cs_t) return;
+                const h3 = cs.querySelector('h3'), p = cs.querySelector('p');
+                if (h3) h3.textContent = cs_t.h3;
+                if (p)  p.textContent  = cs_t.p;
+            });
+
+            // Footer
+            const footerP = document.querySelector('footer p');
+            if (footerP) footerP.textContent = t.footer;
+
+            // Re-fit headings after text change
+            fitAllHeadings();
+
+            // Update button states
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+        }
+
+        // Lang switcher click handler
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => applyLang(btn.dataset.lang));
+        });
+        // ─────────────────────────────────────────────────────────────
+
         // Fit a single element's font-size to fill its clientWidth exactly
         function fitLineToWidth(el) {
             el.style.fontSize = '10rem';
