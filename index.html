@@ -31,13 +31,11 @@
         }
 
         @keyframes pulse-glow {
-            0%, 100% { 
-                box-shadow: 0 0 20px rgba(236, 72, 153, 0.4), 0 0 40px rgba(251, 146, 60, 0.2); 
-                transform: scale(1); 
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(236, 72, 153, 0.4), 0 0 40px rgba(251, 146, 60, 0.2);
             }
-            50% { 
-                box-shadow: 0 0 40px rgba(236, 72, 153, 0.7), 0 0 60px rgba(251, 146, 60, 0.4); 
-                transform: scale(1.05); 
+            50% {
+                box-shadow: 0 0 50px rgba(236, 72, 153, 0.8), 0 0 80px rgba(251, 146, 60, 0.5);
             }
         }
 
@@ -245,6 +243,18 @@
         [lang="ar"] { font-family: 'Tajawal', system-ui, sans-serif; }
         [lang="ar"] nav { direction: rtl; }
         [lang="ar"] #lang-bar { right: auto; left: 1.5rem; border-radius: 0 0 0.75rem 0.75rem; }
+        /* Arabic glyphs have deeper descenders — increase line-height to prevent clipping */
+        [lang="ar"] .section-heading-fullwidth {
+            line-height: 1.25;
+            padding-bottom: 0.15em;
+        }
+        [lang="ar"] .section-heading-2line {
+            line-height: 1.25;
+        }
+        [lang="ar"] .section-heading-2line .fit-line {
+            line-height: 1.25;
+            padding-bottom: 0.15em;
+        }
 
         /* SECTIONS */
         section {
